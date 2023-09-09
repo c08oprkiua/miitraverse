@@ -1,7 +1,7 @@
 # MiiTraverse
 A Miiverse frontend for Android
 
-The end goal of this project is to provide a full frontend for accessing (Miiverse instances)[] on an Android device
+The end goal of this project is to provide a full frontend for accessing (Miiverse instances)[https://github.com/c08oprkiua/miiverse-android/blob/main/README.md#implementations-that-should-work] on an Android device
 
 # Features:
 * ~~existing~~
