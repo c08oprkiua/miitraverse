@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1raxoh3v2wwg"]
+
+[ext_resource type="Script" path="res://Scripts/NetworkListManager.gd" id="1_51t3f"]
+
+[node name="NetworkList" type="OptionButton"]
+size_flags_horizontal = 10
+script = ExtResource("1_51t3f")
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]

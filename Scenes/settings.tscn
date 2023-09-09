@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://pj0t14sthbuj"]
+
+[ext_resource type="Script" path="res://Scripts/settings.gd" id="1_n7fht"]
+[ext_resource type="Script" path="res://Scripts/NetworkListManager.gd" id="2_05bug"]
+
+[node name="Settings" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n7fht")
+
+[node name="Cache" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Offline Cache"
+
+[node name="UI Scale" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI Scale"]
+layout_mode = 2
+text = "UI Scale"
+
+[node name="Scaler" type="HSlider" parent="UI Scale"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+ticks_on_borders = true
+
+[node name="DefaultNetwork" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DefaultNetwork"]
+layout_mode = 2
+text = "Default Network"
+
+[node name="DefaultNetwork" type="OptionButton" parent="DefaultNetwork"]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("2_05bug")
+IsInOptions = true
+
+[node name="Spoof" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Spoof Client as Nintendo device"
+
+[node name="SpoofClients" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpoofClients"]
+layout_mode = 2
+text = "Currently spoofed device: "
+
+[node name="ClientSpoof" type="OptionButton" parent="SpoofClients"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 2
+selected = 1
+popup/item_0/text = "3DS"
+popup/item_0/id = 0
+popup/item_1/text = "Wii U"
+popup/item_1/id = 1
+
+[node name="SetReset" type="Button" parent="."]
+layout_mode = 2
+text = "Reset to defaults"
+
+[node name="DebugMode" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Debug mode"
+
+[connection signal="toggled" from="Cache" to="." method="_on_cache_toggled"]
+[connection signal="value_changed" from="UI Scale/Scaler" to="." method="_on_scaler_value_changed"]
+[connection signal="item_selected" from="DefaultNetwork/DefaultNetwork" to="." method="_on_default_network_item_selected"]
+[connection signal="toggled" from="Spoof" to="." method="_on_spoof_toggled"]
+[connection signal="item_selected" from="SpoofClients/ClientSpoof" to="." method="_on_client_spoof_item_selected"]
+[connection signal="pressed" from="SetReset" to="." method="_on_set_reset_pressed"]
+[connection signal="toggled" from="DebugMode" to="." method="_on_debug_mode_toggled"]

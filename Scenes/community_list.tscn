@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqey7fpvbupyl"]
+
+[ext_resource type="Script" path="res://Scripts/CommunityLoad.gd" id="1_28tuy"]
+
+[node name="CommunityList" type="VBoxContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("1_28tuy")
