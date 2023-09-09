@@ -1,7 +1,7 @@
 # MiiTraverse
 A Miiverse frontend for Android
 
-The end goal of this project is to provide a full frontend for accessing [Miiverse instances](https://github.com/c08oprkiua/miiverse-android/blob/main/README.md#implementations-that-should-work) on an Android device
+The end goal of this project is to provide a full frontend for accessing [Miiverse instances](https://github.com/c08oprkiua/miiverse-android/blob/main/README.md#implementations-that-should-work) on an Android device. Currently, it is not far along, because this is only one of many things spread across my overall workload. But, by the end, it will hopefully be a 1:1 way to access all your favorite Miiverse content from the comfort of your phone or tablet, with some nice QoL things that come from the fact that it's on a phone (like downloading media, and maybe notifications...?).
 
 # Features:
 * ~~existing~~
@@ -11,7 +11,7 @@ The end goal of this project is to provide a full frontend for accessing [Miiver
   * `/v1/communities/`
 * Save and swap between different Miiverse implementations on the fly (*mostly* done)
 
-# To-do:
+# Future features:
 * Downloading images
 * Posting
 
