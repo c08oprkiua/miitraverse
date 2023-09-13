@@ -21,7 +21,7 @@ Currently, the GUI elements it uses are a mix of programmer art that I made (it'
 * Posting
 
 # Implementations that *should* work:
-Basically, any implementation that has a working API should work. Some that have said API, as far as I'm aware, include: 
-* Juxtaposition (This one is complicated, so support might not be 100% or at all at first)
+Basically, any implementation that has a working API implementation should work. Some that have said API, as far as I'm aware, include: 
+* Juxtaposition (This one is complicated due to service tokens, so support might not be 100% or at all at first)
 * NoNameVerse
 * Rverse3 (when it's out, at least)
