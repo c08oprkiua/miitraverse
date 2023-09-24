@@ -1,26 +1,30 @@
 extends HBoxContainer
+var config = ConfigFile.new()
+
 
 func _ready():
-	var config = ConfigFile.new()
 	config.load("user://settings.ini")
-	if config.get_value("Settings", "Debug"):
+	if config.get_value("Globals", "Debug"):
 		show()
 	else:
 		hide()
 
 
 func _on_button_pressed():
-	Network.InitialConnect()
+	Satellite.emit_signal("SwapNetworks", 0)
 
 func _on_button_2_pressed():
-	Network.PageRequest(Network.allcommunities)
+	Network.ThreadManager("Communities")
 
 func _on_button_3_pressed():
-	database.XMLfileprocess("user://communities.xml")
+	OfflineCacheLoad()
+
+func OfflineCacheLoad():
+	var CurrentNetwork = Network.currenthost
+	DaBa.CommunityListXML(DaBa.communities, "Communities")
 
 func _on_button_4_pressed():
-	#Network.PageRequest(Network.communitypage)
-	print(database.parampackmaker())
+	print(DaBa.parampackmaker())
 
 func _on_button_5_pressed():
 	pass

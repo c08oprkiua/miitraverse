@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfupwr7sqfyf0"]
+
+[ext_resource type="Script" path="res://Scripts/ProfileSettings.gd" id="1_6q55y"]
+[ext_resource type="Script" path="res://Scripts/DevMimic.gd" id="1_lqd22"]
+[ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/bubblemargins.tres" id="1_p5okb"]
+[ext_resource type="Texture2D" uid="uid://bcgjqqn6h6u4r" path="res://Assets/Bubble.png" id="2_0hgos"]
+
+[node name="NinePatchRect" type="NinePatchRect"]
+custom_minimum_size = Vector2(500, 300)
+offset_top = 204.0
+offset_right = 540.0
+offset_bottom = 204.0
+theme = ExtResource("1_p5okb")
+texture = ExtResource("2_0hgos")
+patch_margin_left = 35
+patch_margin_top = 35
+patch_margin_right = 35
+patch_margin_bottom = 35
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p5okb")
+theme_override_constants/margin_bottom = 35
+
+[node name="ProfileSettings" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("1_6q55y")
+
+[node name="Label" type="Label" parent="MarginContainer/ProfileSettings"]
+layout_mode = 2
+text = "(Profile)"
+horizontal_alignment = 1
+
+[node name="Cache" type="CheckButton" parent="MarginContainer/ProfileSettings"]
+layout_mode = 2
+text = "Offline Cache"
+
+[node name="SpoofClients" type="HBoxContainer" parent="MarginContainer/ProfileSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ProfileSettings/SpoofClients"]
+layout_mode = 2
+text = "Currently mimicked device: "
+
+[node name="ClientSpoof" type="OptionButton" parent="MarginContainer/ProfileSettings/SpoofClients"]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("1_lqd22")
+
+[node name="Use Tint" type="CheckButton" parent="MarginContainer/ProfileSettings"]
+layout_mode = 2
+text = "Use custom UI tint: "
+
+[node name="DefaultTint" type="HBoxContainer" parent="MarginContainer/ProfileSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ProfileSettings/DefaultTint"]
+layout_mode = 2
+text = "Custom UI color: "
+
+[node name="Picker" type="ColorPickerButton" parent="MarginContainer/ProfileSettings/DefaultTint"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Default UI color"
+alignment = 0
+
+[node name="SetReset" type="Button" parent="MarginContainer/ProfileSettings"]
+layout_mode = 2
+text = "Reset to defaults"
+
+[node name="Globals" type="VBoxContainer" parent="MarginContainer/ProfileSettings"]
+layout_mode = 2

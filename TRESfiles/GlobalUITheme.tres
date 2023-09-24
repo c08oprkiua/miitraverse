@@ -1,0 +1,4 @@
+[gd_resource type="Theme" format=3 uid="uid://dn4e42sqx1h5y"]
+
+[resource]
+TabBar/constants/h_separation = 0

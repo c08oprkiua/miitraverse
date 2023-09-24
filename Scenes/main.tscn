@@ -1,23 +1,22 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2pkl540o6fx"]
+[gd_scene load_steps=18 format=3 uid="uid://d2pkl540o6fx"]
 
 [ext_resource type="Script" path="res://Scripts/UIControl.gd" id="1_i768k"]
-[ext_resource type="Texture2D" uid="uid://gf747ddn62q1" path="res://Assets/simplesearch.svg" id="3_djbwo"]
-[ext_resource type="Texture2D" uid="uid://ciilsbv5mr1xv" path="res://Assets/plainupnp.svg" id="4_d5doy"]
+[ext_resource type="Theme" uid="uid://buohcwkobwl42" path="res://TRESfiles/topbar.tres" id="2_4fxcd"]
 [ext_resource type="Texture2D" uid="uid://bk8c6qr86ncih" path="res://Assets/settings.svg" id="4_gdpu0"]
-[ext_resource type="Texture2D" uid="uid://bmdrjmknxhowt" path="res://Assets/simplesearch (1).svg" id="4_j21sd"]
+[ext_resource type="Texture2D" uid="uid://gf747ddn62q1" path="res://Assets/Search.svg" id="4_kc3o7"]
 [ext_resource type="ButtonGroup" uid="uid://bqw5rssha8tr5" path="res://TRESfiles/bottombar.tres" id="4_lch7b"]
-[ext_resource type="Texture2D" uid="uid://bvqqp2bttsp4c" path="res://Assets/navegadoreinkbro.svg" id="5_i6dyj"]
-[ext_resource type="Script" path="res://Scripts/NetworkListManager.gd" id="6_lko43"]
-[ext_resource type="Texture2D" uid="uid://c50b71lb0hfwq" path="res://Assets/settings (1).svg" id="6_voh2d"]
-[ext_resource type="PackedScene" uid="uid://dqey7fpvbupyl" path="res://Scenes/community_list.tscn" id="7_527du"]
+[ext_resource type="Script" path="res://Scripts/NetworkOption.gd" id="5_bl46s"]
 [ext_resource type="PackedScene" uid="uid://pj0t14sthbuj" path="res://Scenes/settings.tscn" id="8_684ki"]
 [ext_resource type="Script" path="res://Scripts/DebugMenu.gd" id="8_pdblh"]
-[ext_resource type="Texture2D" uid="uid://bc3j8unsnufg7" path="res://Assets/homeicon.png" id="10_h3ycd"]
-[ext_resource type="Texture2D" uid="uid://ou5qr45qixu6" path="res://Assets/homeiconpressed.png" id="11_uhfyi"]
-[ext_resource type="Texture2D" uid="uid://drfuetwmikxvv" path="res://Assets/messages.png" id="12_eclaf"]
-[ext_resource type="Texture2D" uid="uid://daejdtk4funw8" path="res://Assets/messagespressed.png" id="13_tlxq0"]
-[ext_resource type="Texture2D" uid="uid://dgu6u2h36a53t" path="res://Assets/Notifications.png" id="14_uyyww"]
-[ext_resource type="Texture2D" uid="uid://cnjpvnn15a4gy" path="res://Assets/Notificationspressed.png" id="15_x1mtu"]
+[ext_resource type="Script" path="res://Scripts/CategoryLoad.gd" id="9_87aww"]
+[ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/bubblemargins.tres" id="9_vvli3"]
+[ext_resource type="Theme" uid="uid://pdvdjqn3kgdm" path="res://TRESfiles/MainBarTheme.tres" id="11_xtrtl"]
+[ext_resource type="Texture2D" uid="uid://bvqqp2bttsp4c" path="res://Assets/Communities.svg" id="13_qep40"]
+[ext_resource type="Texture2D" uid="uid://udqiowwrmvoq" path="res://Assets/Home.svg" id="14_x8mnm"]
+[ext_resource type="Texture2D" uid="uid://begbmh8hmuiic" path="res://Assets/DMs.svg" id="15_2qmdm"]
+[ext_resource type="Texture2D" uid="uid://bfh6u2i4xorl5" path="res://Assets/Notifications.svg" id="16_y1hec"]
+[ext_resource type="Texture2D" uid="uid://cv8syawad6edw" path="res://Assets/newbg.svg" id="18_msnxq"]
+[ext_resource type="Texture2D" uid="uid://ciilsbv5mr1xv" path="res://Assets/plainupnp.svg" id="19_jq22y"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -26,148 +25,216 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_i768k")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Topbar" type="HBoxContainer" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_4fxcd")
+alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Search" type="Button" parent="Topbar"]
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+button_group = ExtResource("4_lch7b")
+icon = ExtResource("4_kc3o7")
+
+[node name="NetworkOption" type="OptionButton" parent="Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("5_bl46s")
+
+[node name="Settings" type="Button" parent="Topbar"]
+layout_mode = 2
+size_flags_horizontal = 8
+toggle_mode = true
+button_group = ExtResource("4_lch7b")
+icon = ExtResource("4_gdpu0")
+
+[node name="Debug" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_vertical = 0
+alignment = 1
+script = ExtResource("8_pdblh")
+
+[node name="Button" type="Button" parent="Debug"]
+layout_mode = 2
+text = "connect to host"
+
+[node name="Button2" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Communities"
+
+[node name="Button3" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Printer"
+
+[node name="Button4" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Button4"
+
+[node name="Button5" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Button5"
+
+[node name="UIMargin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_right = 35
 
-[node name="Topbar" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-alignment = 1
-
-[node name="Search" type="TextureButton" parent="VBoxContainer/Topbar"]
-layout_mode = 2
-size_flags_horizontal = 2
-toggle_mode = true
-button_group = ExtResource("4_lch7b")
-texture_normal = ExtResource("3_djbwo")
-texture_pressed = ExtResource("4_j21sd")
-stretch_mode = 5
-
-[node name="NetworkOption" type="OptionButton" parent="VBoxContainer/Topbar"]
-layout_mode = 2
-script = ExtResource("6_lko43")
-
-[node name="Settings" type="TextureButton" parent="VBoxContainer/Topbar"]
-layout_mode = 2
-size_flags_horizontal = 10
-toggle_mode = true
-button_group = ExtResource("4_lch7b")
-texture_normal = ExtResource("4_gdpu0")
-texture_pressed = ExtResource("6_voh2d")
-stretch_mode = 5
-
-[node name="Debug" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-alignment = 1
-script = ExtResource("8_pdblh")
-
-[node name="Button" type="Button" parent="VBoxContainer/Debug"]
-layout_mode = 2
-text = "connect to host"
-
-[node name="Button2" type="Button" parent="VBoxContainer/Debug"]
-layout_mode = 2
-text = "Communities"
-
-[node name="Button3" type="Button" parent="VBoxContainer/Debug"]
-layout_mode = 2
-text = "Printer"
-
-[node name="Button4" type="Button" parent="VBoxContainer/Debug"]
-layout_mode = 2
-text = "Button4"
-
-[node name="Button5" type="Button" parent="VBoxContainer/Debug"]
-layout_mode = 2
-text = "Button5"
-
-[node name="MainUI" type="ScrollContainer" parent="VBoxContainer"]
+[node name="MainUI" type="ScrollContainer" parent="UIMargin"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("9_vvli3")
 follow_focus = true
 
-[node name="CommunityList" parent="VBoxContainer/MainUI" instance=ExtResource("7_527du")]
+[node name="CommunityList" type="VBoxContainer" parent="UIMargin/MainUI"]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("9_87aww")
+PageInt = 1
 
-[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/MainUI"]
+[node name="ActivityFeedList" type="VBoxContainer" parent="UIMargin/MainUI"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("9_87aww")
+
+[node name="PostList" type="HFlowContainer" parent="UIMargin/MainUI"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Settings" parent="VBoxContainer/MainUI" instance=ExtResource("8_684ki")]
+[node name="Settings" parent="UIMargin/MainUI" instance=ExtResource("8_684ki")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonBar" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Notifications" type="VBoxContainer" parent="UIMargin/MainUI"]
+visible = false
 layout_mode = 2
+
+[node name="DMs" type="VBoxContainer" parent="UIMargin/MainUI"]
+visible = false
+layout_mode = 2
+
+[node name="ButtonBar" type="HBoxContainer" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 8
+theme = ExtResource("11_xtrtl")
 alignment = 1
 
-[node name="Activity Feed" type="TextureButton" parent="VBoxContainer/ButtonBar"]
+[node name="Activity Feed" type="Button" parent="ButtonBar"]
 layout_mode = 2
+size_flags_horizontal = 3
 toggle_mode = true
 action_mode = 0
 button_group = ExtResource("4_lch7b")
-texture_normal = ExtResource("4_d5doy")
-stretch_mode = 5
+icon = ExtResource("19_jq22y")
+icon_alignment = 1
 
-[node name="Communities" type="TextureButton" parent="VBoxContainer/ButtonBar"]
+[node name="Communities" type="Button" parent="ButtonBar"]
 layout_mode = 2
+size_flags_horizontal = 3
 toggle_mode = true
 action_mode = 0
 button_group = ExtResource("4_lch7b")
-texture_normal = ExtResource("5_i6dyj")
-stretch_mode = 5
+icon = ExtResource("13_qep40")
+icon_alignment = 1
 
-[node name="Home" type="TextureButton" parent="VBoxContainer/ButtonBar"]
+[node name="Posts" type="Button" parent="ButtonBar"]
+visible = false
 layout_mode = 2
+text = "Posts"
+icon_alignment = 1
+
+[node name="Home" type="Button" parent="ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
 toggle_mode = true
 action_mode = 0
 button_group = ExtResource("4_lch7b")
-texture_normal = ExtResource("10_h3ycd")
-texture_pressed = ExtResource("11_uhfyi")
-stretch_mode = 5
+icon = ExtResource("14_x8mnm")
+icon_alignment = 1
 
-[node name="Messages" type="TextureButton" parent="VBoxContainer/ButtonBar"]
+[node name="Messages" type="Button" parent="ButtonBar"]
 layout_mode = 2
+size_flags_horizontal = 3
 toggle_mode = true
 action_mode = 0
 button_group = ExtResource("4_lch7b")
-texture_normal = ExtResource("12_eclaf")
-texture_pressed = ExtResource("13_tlxq0")
-stretch_mode = 5
+icon = ExtResource("15_2qmdm")
+icon_alignment = 1
 
-[node name="Notifications" type="TextureButton" parent="VBoxContainer/ButtonBar"]
+[node name="Notifications" type="Button" parent="ButtonBar"]
 layout_mode = 2
+size_flags_horizontal = 3
 toggle_mode = true
 action_mode = 0
 button_group = ExtResource("4_lch7b")
-texture_normal = ExtResource("14_uyyww")
-texture_pressed = ExtResource("15_x1mtu")
-stretch_mode = 5
+icon = ExtResource("16_y1hec")
+icon_alignment = 1
 
-[connection signal="toggled" from="VBoxContainer/Topbar/Search" to="." method="_on_search_toggled"]
-[connection signal="toggled" from="VBoxContainer/Topbar/Settings" to="." method="_on_settings_toggled"]
-[connection signal="pressed" from="VBoxContainer/Debug/Button" to="VBoxContainer/Debug" method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Debug/Button2" to="VBoxContainer/Debug" method="_on_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/Debug/Button3" to="VBoxContainer/Debug" method="_on_button_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/Debug/Button4" to="VBoxContainer/Debug" method="_on_button_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/Debug/Button5" to="VBoxContainer/Debug" method="_on_button_5_pressed"]
-[connection signal="toggled" from="VBoxContainer/ButtonBar/Communities" to="." method="_on_communities_toggled"]
-[connection signal="toggled" from="VBoxContainer/ButtonBar/Home" to="." method="_on_home_toggled"]
-[connection signal="toggled" from="VBoxContainer/ButtonBar/Messages" to="." method="_on_messages_toggled"]
-[connection signal="toggled" from="VBoxContainer/ButtonBar/Notifications" to="." method="_on_notifications_toggled"]
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("18_msnxq")
+stretch_mode = 1
+
+[connection signal="toggled" from="Topbar/Search" to="." method="_on_search_toggled"]
+[connection signal="toggled" from="Topbar/Settings" to="." method="_on_settings_toggled"]
+[connection signal="pressed" from="Debug/Button" to="Debug" method="_on_button_pressed"]
+[connection signal="pressed" from="Debug/Button2" to="Debug" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Debug/Button3" to="Debug" method="_on_button_3_pressed"]
+[connection signal="pressed" from="Debug/Button4" to="Debug" method="_on_button_4_pressed"]
+[connection signal="pressed" from="Debug/Button5" to="Debug" method="_on_button_5_pressed"]
+[connection signal="toggled" from="ButtonBar/Activity Feed" to="." method="_on_activity_feed_toggled"]
+[connection signal="toggled" from="ButtonBar/Communities" to="." method="_on_communities_toggled"]
+[connection signal="toggled" from="ButtonBar/Home" to="." method="_on_home_toggled"]
+[connection signal="toggled" from="ButtonBar/Messages" to="." method="_on_messages_toggled"]
+[connection signal="toggled" from="ButtonBar/Notifications" to="." method="_on_notifications_toggled"]

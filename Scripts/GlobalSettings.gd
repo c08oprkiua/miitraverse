@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-var config = database.settings
+var config = DaBa.settings
 
 #Partly just here so I am 200% sure I don't typo, lol
 const setpath = "user://settings.ini"
@@ -43,24 +43,10 @@ const globaldefaults = {
 	},
 }
 
-const versedefaults = {
-	"OfflineCache": false,
-	"Spoof": 0, #Wii U
-	"UITint": "",
-	"UseUniqueTint": true,
-}
+
 
 func _ready():
-	config.load(setpath)
-	if not FileAccess.file_exists(setpath):
-		Defaults()
-		config.save(setpath)
-	config.load(setpath)
-	database.GlobalColorTint = config.get_value("Globals", "UITint")
-	NetworkIndexLoad()
-	Network.currenthost = config.get_value("Globals", "Network", "NoNameVerse")
 	ButtonsSet()
-
 #This is the magic function that sets all the button states in settings
 func ButtonsSet():
 	for entries in nodeindex.keys():
@@ -82,17 +68,6 @@ func Defaults():
 func Globalset(name, value):
 	config.set_value("Globals", name, value)
 	config.save(setpath)
-
-func NetworkIndexLoad():
-	for networks in database.settings.get_section_keys("Networks"):
-		Network.networkarray[indexnum] = networks
-		indexnum += 1
-		if not DirAccess.dir_exists_absolute("user://"+networks):
-			DirAccess.make_dir_absolute("user://"+networks)
-			for entries in versedefaults.keys():
-				config.get_value("Globals", entries)
-				config.set_value(networks, entries, config.get_value("Globals", entries))
-	Satellite.emit_signal("RefreshNetworks")
 
 func _on_cache_toggled(button_pressed):
 	Globalset("OfflineCache", button_pressed)

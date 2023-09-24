@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://bino38unkump7"]
+
+[resource]
+MarginContainer/constants/margin_bottom = 35
+MarginContainer/constants/margin_left = 35
+MarginContainer/constants/margin_right = 35
+MarginContainer/constants/margin_top = 35
+VBoxContainer/constants/separation = 30

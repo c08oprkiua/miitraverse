@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://xhegtpbjejcr"]
+
+[ext_resource type="Texture2D" uid="uid://bcgjqqn6h6u4r" path="res://Assets/Bubble.png" id="1_pn8h4"]
+[ext_resource type="Script" path="res://Scripts/GlobalSettings.gd" id="2_xg1xg"]
+[ext_resource type="Script" path="res://Scripts/NetworkOption.gd" id="3_q0kb3"]
+[ext_resource type="Script" path="res://Scripts/DevMimic.gd" id="4_5cc24"]
+
+[node name="GlobalSettings" type="NinePatchRect"]
+custom_minimum_size = Vector2(540, 300)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -900.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_pn8h4")
+patch_margin_left = 35
+patch_margin_top = 35
+patch_margin_right = 35
+patch_margin_bottom = 35
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="Globals" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_xg1xg")
+
+[node name="CategoryName" type="Label" parent="MarginContainer/Globals"]
+layout_mode = 2
+text = "Globals"
+horizontal_alignment = 1
+
+[node name="Cache" type="CheckButton" parent="MarginContainer/Globals"]
+layout_mode = 2
+text = "Offline Cache: "
+
+[node name="DefaultNetwork" type="HBoxContainer" parent="MarginContainer/Globals"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Globals/DefaultNetwork"]
+layout_mode = 2
+text = "Default Network"
+
+[node name="DefaultNetwork" type="OptionButton" parent="MarginContainer/Globals/DefaultNetwork"]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("3_q0kb3")
+IsInOptions = true
+
+[node name="SpoofClients" type="HBoxContainer" parent="MarginContainer/Globals"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Globals/SpoofClients"]
+layout_mode = 2
+text = "Currently mimicked device: "
+
+[node name="ClientSpoof" type="OptionButton" parent="MarginContainer/Globals/SpoofClients"]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("4_5cc24")
+
+[node name="DefaultTint" type="HBoxContainer" parent="MarginContainer/Globals"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Globals/DefaultTint"]
+layout_mode = 2
+text = "Default UI color: "
+
+[node name="Picker" type="ColorPickerButton" parent="MarginContainer/Globals/DefaultTint"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Default UI color"
+alignment = 0
+
+[node name="SetReset" type="Button" parent="MarginContainer/Globals"]
+layout_mode = 2
+text = "Reset to defaults"
+
+[node name="DebugMode" type="CheckButton" parent="MarginContainer/Globals"]
+layout_mode = 2
+text = "Debug mode"

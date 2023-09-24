@@ -1,39 +1,33 @@
 extends Control
 
-var Config = ConfigFile.new()
-var experiment = true
-
-const tabnames = {
-	"Home": "VBoxContainer/MainUI/CommunityList",
-	"Communities": "VBoxContainer/MainUI/CommunityList",
-	"Settings": "VBoxContainer/MainUI/Settings",
-}
-
-var itname
+var itname 
 var information
 var commtoggle
+@onready var homebutton = $"ButtonBar/Home"
 
 func _ready():
-	Network.InitialConnect()
-	Config.load("user://settings.ini")
-	createsettings()
-	SwitchTabs("Home", true)
+	Network.ThreadManager(0)
+	homebutton.set_pressed(true)
 
-func createsettings():
-	if not Config.has_section("Networks"):
-		Config.set_value("Networks", "NoNameVerse", "olvapi.nonamegiven.xyz")
-	Config.set_value("Settings", "Network", "NoNameVerse")
-	Config.set_value("Settings", "OfflineCache", true)
-	Config.save("user://settings.ini")
-
+#This almost works. Almost.
 func SwitchTabs(tabnow, active):
-	for tabs in tabnames.keys():
-			get_node(tabnames.get(tabs)).hide()
-	if active:
-		get_node(tabnames.get(tabnow)).show()
-	else:
-		get_node(tabnames.get("Home")).show()
-	
+	#Note to self, this will also manage triggering the loading/downloading of 
+	#content for a page
+	for tabs in DaBa.Tbl.keys():
+		get_node(DaBa.Tbl[tabs].get("Node")).hide()
+	if active and tabnow != "Home":
+		homebutton.set_pressed_no_signal(false)
+		get_node(DaBa.Tbl[tabnow].get("Node")).show()
+		#Send signal to fetch info here
+		print(tabnow)
+		match tabnow:
+			"Home":
+				pass
+			"Communities":
+				Satellite.emit_signal("NetFetch", "Communities")
+	if not active and tabnow != "Home":
+		get_node(DaBa.Tbl["Home"].get("Node")).show()
+		homebutton.set_pressed(true)
 
 func _on_communities_toggled(button_pressed):
 	SwitchTabs("Communities", button_pressed)
@@ -42,13 +36,16 @@ func _on_home_toggled(button_pressed):
 	SwitchTabs("Home", button_pressed)
 
 func _on_messages_toggled(button_pressed):
-	SwitchTabs("Settings", button_pressed)
+	SwitchTabs("DMs", button_pressed)
 
 func _on_notifications_toggled(button_pressed):
-	SwitchTabs("Settings", button_pressed)
+	SwitchTabs("Notifications", button_pressed)
 
 func _on_settings_toggled(button_pressed):
 	SwitchTabs("Settings", button_pressed)
 
 func _on_search_toggled(button_pressed):
 	pass # Replace with function body.
+
+func _on_activity_feed_toggled(button_pressed):
+	SwitchTabs("People", button_pressed)
