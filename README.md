@@ -9,7 +9,15 @@ Currently, the GUI elements it uses are a mix of Godot-native styleboxes and [Ar
 
 This app is designed to mimic the requests a real console would make. To this extent, bans solely for using the app alone should not happen, nor should it be particularly detectable that this app is not a console. That being said...
 
-This app will not magically make you a hackerman capable of evading rules. You are stull subject to the rules of whichever Miiverse revival you are accessing, this app will not change that. I hold no responsiblity for you getting banned for behavior explicitly outlined against the TOS of whichever Miiverse revival you are using while using the app. This app will not allow you to more easily evade bans, as it still requires console certificates and account tokens to pass authentication on (some of) these services, and the app does not and will not provide those for you. 
+This app will not magically make you a hackerman capable of evading rules. You are stull subject to the rules of whichever Miiverse revival(s) you are accessing, this app will not change that. I hold no responsiblity for you getting banned for behavior explicitly outlined against the TOS of whichever Miiverse revival you are using through MiiTraverse. This app will not allow you to easily evade bans, as it still requires console certificates and account tokens to pass authentication on (some of) these services.
+
+# Requirements
+This app does not include, but will require, the following:
+* An already created (and not banned) account on the revival you are accessing
+* console certificates from either a Wii U or a 3DS
+
+Additionally, the following can be used with the app but are not included
+* Custom stamps
 
 
 # Features:
