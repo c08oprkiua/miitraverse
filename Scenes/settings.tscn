@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://pj0t14sthbuj"]
+
+[ext_resource type="Script" path="res://Scripts/Settings/BaseSettings.gd" id="1_7h7nf"]
+[ext_resource type="PackedScene" uid="uid://pwuwhr3cx3im" path="res://Scenes/spacer.tscn" id="2_tme4v"]
+[ext_resource type="PackedScene" uid="uid://xhegtpbjejcr" path="res://Scenes/Bubbles/globalsettings.tscn" id="2_xkfo7"]
+
+[node name="Settings" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7h7nf")
+
+[node name="Spacer" parent="." instance=ExtResource("2_tme4v")]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Globals" parent="." instance=ExtResource("2_xkfo7")]
+layout_mode = 2

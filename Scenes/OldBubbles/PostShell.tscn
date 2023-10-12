@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjnrqrxfc3jrp"]
+
+[ext_resource type="Texture2D" uid="uid://bcgjqqn6h6u4r" path="res://Assets/Bubble.png" id="1_xue4n"]
+[ext_resource type="Script" path="res://Scripts/PostManage.gd" id="2_folbc"]
+[ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="3_hheru"]
+[ext_resource type="PackedScene" uid="uid://cec48l6xdesc1" path="res://Scenes/posts.tscn" id="4_dopa6"]
+
+[node name="Post" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xue4n")
+patch_margin_left = 35
+patch_margin_top = 35
+patch_margin_right = 35
+patch_margin_bottom = 35
+script = ExtResource("2_folbc")
+
+[node name="Margins" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_hheru")
+
+[node name="VSplitContainer" parent="Margins" instance=ExtResource("4_dopa6")]
+layout_mode = 2

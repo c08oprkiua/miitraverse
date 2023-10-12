@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqu25xw7yiqxk"]
+
+[ext_resource type="Script" path="res://Scripts/Settings/SetProfile.gd" id="1_a32mf"]
+[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/DevMimic.gd" id="2_ycwm4"]
+
+[node name="ProfileSettings" type="VBoxContainer"]
+script = ExtResource("1_a32mf")
+
+[node name="BubbleName" type="Label" parent="."]
+layout_mode = 2
+text = "(Profile)"
+horizontal_alignment = 1
+
+[node name="Cache" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Offline Cache"
+
+[node name="ProfileName" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ProfileName"]
+layout_mode = 2
+text = "Profile name: "
+
+[node name="ProfName" type="LineEdit" parent="ProfileName"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="APIURL" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="APIURL"]
+layout_mode = 2
+text = "API URL: "
+
+[node name="API" type="LineEdit" parent="APIURL"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="SpoofClients" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpoofClients"]
+layout_mode = 2
+text = "Currently mimicked device: "
+
+[node name="ClientSpoof" type="OptionButton" parent="SpoofClients"]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("2_ycwm4")
+
+[node name="DefaultTint" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DefaultTint"]
+layout_mode = 2
+text = "Custom UI color: "
+
+[node name="Picker" type="ColorPickerButton" parent="DefaultTint"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Default UI color"
+alignment = 0
+
+[node name="UseTint" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Use custom UI tint: "
+
+[node name="SetReset" type="Button" parent="."]
+layout_mode = 2
+text = "Reset to defaults"
+
+[node name="DeleteMe" type="Button" parent="."]
+layout_mode = 2
+text = "Remove Profile"
+
+[connection signal="toggled" from="Cache" to="." method="_on_cache_toggled"]
+[connection signal="item_selected" from="SpoofClients/ClientSpoof" to="." method="_on_client_spoof_item_selected"]
+[connection signal="color_changed" from="DefaultTint/Picker" to="." method="_on_picker_color_changed"]
+[connection signal="popup_closed" from="DefaultTint/Picker" to="." method="_on_picker_popup_closed"]
+[connection signal="toggled" from="UseTint" to="." method="_on_use_tint_toggled"]
+[connection signal="pressed" from="SetReset" to="." method="_on_set_reset_pressed"]
+[connection signal="pressed" from="DeleteMe" to="." method="_on_delete_me_pressed"]

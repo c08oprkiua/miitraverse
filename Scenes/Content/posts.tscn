@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://cec48l6xdesc1"]
+
+[ext_resource type="Texture2D" uid="uid://cvvbv6elvyxho" path="res://Assets/iconplaceholder.png" id="1_lts3p"]
+[ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_peyat"]
+[ext_resource type="Script" path="res://Scripts/Bubble Managers/PostManage.gd" id="2_t35c6"]
+
+[node name="Post" type="VBoxContainer"]
+theme = ExtResource("1_peyat")
+script = ExtResource("2_t35c6")
+
+[node name="Meta" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UserIcon" type="TextureRect" parent="Meta"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_lts3p")
+stretch_mode = 4
+
+[node name="Left" type="VBoxContainer" parent="Meta"]
+layout_mode = 2
+
+[node name="UserName" type="Label" parent="Meta/Left"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Username"
+
+[node name="PostDate" type="Label" parent="Meta/Left"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "(Post date)"
+
+[node name="Right" type="VBoxContainer" parent="Meta"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="AdminOpts" type="Button" parent="Meta/Right"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "Admin 
+Options"
+alignment = 2
+
+[node name="Yeah" type="Button" parent="Meta/Right"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+toggle_mode = true
+text = "Yeah!"
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="Content"]
+layout_mode = 2
+
+[node name="Screenshot" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Content/Screenshot"]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="DLScreenshot" type="Button" parent="Content/Screenshot"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Download screenshot"
+
+[node name="Painting" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Content/Painting"]
+layout_mode = 2
+stretch_mode = 5
+
+[node name="DLPainting" type="Button" parent="Content/Painting"]
+layout_mode = 2
+text = "Download drawing"
+
+[node name="Replies" type="Button" parent="Content"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Replies:
+"

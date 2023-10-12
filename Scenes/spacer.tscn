@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://pwuwhr3cx3im"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ccdyx"]
+
+[node name="Spacer" type="Panel"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ccdyx")

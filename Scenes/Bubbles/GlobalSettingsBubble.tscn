@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx1u5jeyqf22i"]
+
+[ext_resource type="PackedScene" uid="uid://dlwwdti01bj1d" path="res://Scenes/bubbleshell.tscn" id="1_d71g4"]
+[ext_resource type="PackedScene" uid="uid://bnbyott386isv" path="res://Scenes/Content/globalsettings2.tscn" id="2_cyvuy"]
+
+[node name="BubbleShell" instance=ExtResource("1_d71g4")]
+offset_right = 335.0
+offset_bottom = 436.0
+
+[node name="Globals" parent="ContentMargins" index="0" instance=ExtResource("2_cyvuy")]
+layout_mode = 2

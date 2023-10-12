@@ -1,0 +1,104 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnbyott386isv"]
+
+[ext_resource type="Script" path="res://Scripts/Settings/SetGlobal.gd" id="1_twr3s"]
+[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/NetworkOption.gd" id="2_fpnh2"]
+[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/DevMimic.gd" id="3_hmlmj"]
+
+[node name="Globals" type="VBoxContainer"]
+script = ExtResource("1_twr3s")
+
+[node name="CategoryName" type="Label" parent="."]
+layout_mode = 2
+text = "Global settings"
+horizontal_alignment = 1
+
+[node name="Cache" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Offline Cache: "
+
+[node name="DefaultNetwork" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DefaultNetwork"]
+layout_mode = 2
+text = "Default Network"
+
+[node name="DefaultNetwork" type="OptionButton" parent="DefaultNetwork"]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("2_fpnh2")
+IsInOptions = true
+
+[node name="SpoofClients" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpoofClients"]
+layout_mode = 2
+text = "Default mimicked device: "
+
+[node name="ClientSpoof" type="OptionButton" parent="SpoofClients"]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("3_hmlmj")
+
+[node name="3DSCert" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="3DSCert"]
+layout_mode = 2
+text = "3DS Certificate: "
+
+[node name="LineEdit" type="LineEdit" parent="3DSCert"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="WiiUCert" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WiiUCert"]
+layout_mode = 2
+text = "Wii U Certificate: "
+
+[node name="LineEdit" type="LineEdit" parent="WiiUCert"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="DefaultTint" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DefaultTint"]
+layout_mode = 2
+text = "Default UI color: "
+
+[node name="Picker" type="ColorPickerButton" parent="DefaultTint"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Default UI color"
+alignment = 0
+edit_alpha = false
+
+[node name="OverrideColors" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Override custom colors:"
+clip_text = true
+
+[node name="SetReset" type="Button" parent="."]
+layout_mode = 2
+text = "Reset to defaults"
+
+[node name="AddProfile" type="Button" parent="."]
+layout_mode = 2
+text = "Add profile"
+
+[node name="DebugMode" type="CheckButton" parent="."]
+visible = false
+layout_mode = 2
+text = "Debug mode"
+
+[connection signal="toggled" from="Cache" to="." method="_on_cache_toggled"]
+[connection signal="color_changed" from="DefaultTint/Picker" to="." method="_on_picker_color_changed"]
+[connection signal="popup_closed" from="DefaultTint/Picker" to="." method="_on_picker_popup_closed"]
+[connection signal="toggled" from="OverrideColors" to="." method="_on_override_colors_toggled"]
+[connection signal="pressed" from="SetReset" to="." method="_on_set_reset_pressed"]
+[connection signal="pressed" from="AddProfile" to="." method="_on_add_profile_pressed"]
+[connection signal="toggled" from="DebugMode" to="." method="_on_debug_mode_toggled"]

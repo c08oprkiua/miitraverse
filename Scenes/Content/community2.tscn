@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://r5d11r5xwr2r"]
+
+[ext_resource type="Texture2D" uid="uid://cvvbv6elvyxho" path="res://Assets/iconplaceholder.png" id="1_d0hlg"]
+[ext_resource type="Script" path="res://Scripts/Bubble Managers/CommManage.gd" id="1_flyxi"]
+[ext_resource type="Texture2D" uid="uid://b2ju77xia6j71" path="res://Assets/placeholdericon.png" id="2_dx6q1"]
+
+[node name="Content" type="VSplitContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -119.5
+offset_right = 119.5
+offset_bottom = 151.0
+grow_horizontal = 2
+split_offset = -408
+dragger_visibility = 2
+script = ExtResource("1_flyxi")
+
+[node name="TopHalf" type="HSplitContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+dragger_visibility = 2
+
+[node name="ItemIcon" type="TextureButton" parent="TopHalf"]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("1_d0hlg")
+texture_pressed = ExtResource("2_dx6q1")
+stretch_mode = 5
+
+[node name="TopRight" type="VBoxContainer" parent="TopHalf"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Title" type="RichTextLabel" parent="TopHalf/TopRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 1
+bbcode_enabled = true
+text = "(No Name)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="PostNum" type="RichTextLabel" parent="TopHalf/TopRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 1
+bbcode_enabled = true
+text = "(No Followers)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+text = "(No Description)"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false

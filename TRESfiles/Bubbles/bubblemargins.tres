@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bino38unkump7"]
+
+[ext_resource type="StyleBox" uid="uid://x5o161wvwsjw" path="res://TRESfiles/Bubbles/button.tres" id="1_b6aao"]
+[ext_resource type="StyleBox" uid="uid://wxta7874u14g" path="res://TRESfiles/Bubbles/bubble.tres" id="2_x4lli"]
+
+[resource]
+Button/styles/normal = ExtResource("1_b6aao")
+MarginContainer/constants/margin_bottom = 0
+PanelContainer/styles/panel = ExtResource("2_x4lli")
+VBoxContainer/constants/separation = 30

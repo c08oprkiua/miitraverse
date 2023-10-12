@@ -1,0 +1,283 @@
+[gd_scene load_steps=24 format=3 uid="uid://d2pkl540o6fx"]
+
+[ext_resource type="Script" path="res://Scripts/UIControl.gd" id="1_i768k"]
+[ext_resource type="StyleBox" uid="uid://dvq7v5w1vjgs0" path="res://TRESfiles/TopBar/PressedButton.tres" id="2_j35xl"]
+[ext_resource type="ButtonGroup" uid="uid://bqw5rssha8tr5" path="res://TRESfiles/BottomBar/bottombar.tres" id="3_qw7k8"]
+[ext_resource type="Texture2D" uid="uid://bk8c6qr86ncih" path="res://Assets/settings.svg" id="4_gdpu0"]
+[ext_resource type="Texture2D" uid="uid://gf747ddn62q1" path="res://Assets/Search.svg" id="4_kc3o7"]
+[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/NetworkOption.gd" id="5_d1qwj"]
+[ext_resource type="PackedScene" uid="uid://pj0t14sthbuj" path="res://Scenes/settings.tscn" id="8_684ki"]
+[ext_resource type="Theme" uid="uid://x840sjkt430q" path="res://TRESfiles/GlobalGaps.tres" id="8_g4pms"]
+[ext_resource type="Script" path="res://Scripts/DebugMenu.gd" id="8_pdblh"]
+[ext_resource type="PackedScene" uid="uid://pwuwhr3cx3im" path="res://Scenes/spacer.tscn" id="9_fpy3m"]
+[ext_resource type="Script" path="res://Scripts/Content Categotries/CategoryLoad.gd" id="10_na1c6"]
+[ext_resource type="Theme" uid="uid://pdvdjqn3kgdm" path="res://TRESfiles/MainBarTheme.tres" id="11_pkn6c"]
+[ext_resource type="Script" path="res://Scripts/Settings/SetBase.gd" id="12_du3gq"]
+[ext_resource type="Texture2D" uid="uid://bvqqp2bttsp4c" path="res://Assets/Communities.svg" id="13_qep40"]
+[ext_resource type="Texture2D" uid="uid://udqiowwrmvoq" path="res://Assets/Home.svg" id="14_x8mnm"]
+[ext_resource type="Texture2D" uid="uid://begbmh8hmuiic" path="res://Assets/DMs.svg" id="15_2qmdm"]
+[ext_resource type="Texture2D" uid="uid://bfh6u2i4xorl5" path="res://Assets/Notifications.svg" id="16_y1hec"]
+[ext_resource type="Texture2D" uid="uid://cv8syawad6edw" path="res://Assets/newbg.svg" id="18_msnxq"]
+[ext_resource type="Texture2D" uid="uid://ciilsbv5mr1xv" path="res://Assets/plainupnp.svg" id="19_jq22y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbps1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im2at"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kud7"]
+
+[sub_resource type="Theme" id="Theme_53a0a"]
+Button/constants/h_separation = 0
+Button/styles/focus = SubResource("StyleBoxEmpty_hbps1")
+Button/styles/hover = ExtResource("2_j35xl")
+Button/styles/normal = ExtResource("2_j35xl")
+Button/styles/pressed = SubResource("StyleBoxFlat_im2at")
+HBoxContainer/constants/separation = 0
+OptionButton/constants/h_separation = 0
+OptionButton/icons/arrow = null
+OptionButton/styles/focus = SubResource("StyleBoxEmpty_2kud7")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_i768k")
+
+[node name="Topbar" type="HBoxContainer" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = SubResource("Theme_53a0a")
+alignment = 1
+
+[node name="Search" type="Button" parent="Topbar"]
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+button_group = ExtResource("3_qw7k8")
+icon = ExtResource("4_kc3o7")
+
+[node name="NetworkOption" type="OptionButton" parent="Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("5_d1qwj")
+
+[node name="Settings" type="Button" parent="Topbar"]
+layout_mode = 2
+size_flags_horizontal = 8
+toggle_mode = true
+button_group = ExtResource("3_qw7k8")
+icon = ExtResource("4_gdpu0")
+
+[node name="Debug" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+alignment = 1
+script = ExtResource("8_pdblh")
+
+[node name="Button" type="Button" parent="Debug"]
+layout_mode = 2
+text = "connect to host"
+
+[node name="Button2" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Communities"
+
+[node name="Button3" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Printer"
+
+[node name="Button4" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Button4"
+
+[node name="Button5" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Button5"
+
+[node name="UIMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_right = 35
+
+[node name="MainUI" type="ScrollContainer" parent="UIMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("8_g4pms")
+follow_focus = true
+
+[node name="SpacedContent" type="VBoxContainer" parent="UIMargin/MainUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacer" parent="UIMargin/MainUI/SpacedContent" instance=ExtResource("9_fpy3m")]
+layout_mode = 2
+
+[node name="Communities" type="HFlowContainer" parent="UIMargin/MainUI/SpacedContent"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("10_na1c6")
+PageInt = 1
+
+[node name="Posts" type="HFlowContainer" parent="UIMargin/MainUI/SpacedContent"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("10_na1c6")
+PageInt = 4
+
+[node name="HomeList" type="HFlowContainer" parent="UIMargin/MainUI/SpacedContent"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("10_na1c6")
+
+[node name="Settings" parent="UIMargin/MainUI/SpacedContent" instance=ExtResource("8_684ki")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("12_du3gq")
+
+[node name="Notifications" type="VBoxContainer" parent="UIMargin/MainUI/SpacedContent"]
+visible = false
+layout_mode = 2
+script = ExtResource("10_na1c6")
+PageInt = 3
+
+[node name="DMs" type="VBoxContainer" parent="UIMargin/MainUI/SpacedContent"]
+visible = false
+layout_mode = 2
+script = ExtResource("10_na1c6")
+PageInt = 2
+
+[node name="Spacer2" parent="UIMargin/MainUI/SpacedContent" instance=ExtResource("9_fpy3m")]
+layout_mode = 2
+
+[node name="ButtonBar" type="HBoxContainer" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("11_pkn6c")
+alignment = 1
+
+[node name="Activity Feed" type="Button" parent="ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_qw7k8")
+icon = ExtResource("19_jq22y")
+icon_alignment = 1
+
+[node name="Communities" type="Button" parent="ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_qw7k8")
+icon = ExtResource("13_qep40")
+icon_alignment = 1
+
+[node name="Posts" type="Button" parent="ButtonBar"]
+visible = false
+layout_mode = 2
+text = "Posts"
+icon_alignment = 1
+
+[node name="Home" type="Button" parent="ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_qw7k8")
+icon = ExtResource("14_x8mnm")
+icon_alignment = 1
+
+[node name="Messages" type="Button" parent="ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_qw7k8")
+icon = ExtResource("15_2qmdm")
+icon_alignment = 1
+
+[node name="Notifications" type="Button" parent="ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+button_group = ExtResource("3_qw7k8")
+icon = ExtResource("16_y1hec")
+icon_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("18_msnxq")
+stretch_mode = 1
+
+[connection signal="toggled" from="Topbar/Search" to="." method="_on_search_toggled"]
+[connection signal="toggled" from="Topbar/Settings" to="." method="_on_settings_toggled"]
+[connection signal="pressed" from="Debug/Button" to="Debug" method="_on_button_pressed"]
+[connection signal="pressed" from="Debug/Button2" to="Debug" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Debug/Button3" to="Debug" method="_on_button_3_pressed"]
+[connection signal="pressed" from="Debug/Button4" to="Debug" method="_on_button_4_pressed"]
+[connection signal="pressed" from="Debug/Button5" to="Debug" method="_on_button_5_pressed"]
+[connection signal="toggled" from="ButtonBar/Activity Feed" to="." method="_on_activity_feed_toggled"]
+[connection signal="toggled" from="ButtonBar/Communities" to="." method="_on_communities_toggled"]
+[connection signal="toggled" from="ButtonBar/Posts" to="." method="_on_posts_toggled"]
+[connection signal="toggled" from="ButtonBar/Home" to="." method="_on_home_toggled"]
+[connection signal="toggled" from="ButtonBar/Messages" to="." method="_on_messages_toggled"]
+[connection signal="toggled" from="ButtonBar/Notifications" to="." method="_on_notifications_toggled"]

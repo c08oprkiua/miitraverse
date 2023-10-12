@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwjtjbuvp71yj"]
+
+[ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_6f8kp"]
+[ext_resource type="Script" path="res://Scripts/CommManage.gd" id="1_f5c38"]
+[ext_resource type="Texture2D" uid="uid://bcgjqqn6h6u4r" path="res://Assets/Bubble.png" id="3_pg8pn"]
+[ext_resource type="PackedScene" uid="uid://r5d11r5xwr2r" path="res://Scenes/Content/community2.tscn" id="4_tdopm"]
+
+[node name="BaseButton" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_direction = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 300.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("1_6f8kp")
+script = ExtResource("1_f5c38")
+
+[node name="Bubble" type="NinePatchRect" parent="."]
+show_behind_parent = true
+visibility_layer = 512
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_6f8kp")
+texture = ExtResource("3_pg8pn")
+patch_margin_left = 35
+patch_margin_top = 35
+patch_margin_right = 35
+patch_margin_bottom = 35
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Margins" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_6f8kp")
+
+[node name="Content" parent="Margins" instance=ExtResource("4_tdopm")]
+layout_mode = 2
+
+[node name="Community" type="Button" parent="."]
+layout_mode = 2
+flat = true
+
+[connection signal="pressed" from="Community" to="." method="_on_community_pressed"]

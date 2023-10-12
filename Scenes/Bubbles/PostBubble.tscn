@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0bw14xp66y70"]
+
+[ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_yxjpw"]
+[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/Bubble.gd" id="2_wgn3k"]
+[ext_resource type="PackedScene" uid="uid://cec48l6xdesc1" path="res://Scenes/Content/posts.tscn" id="3_v8j2w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wfbeb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6jqq8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbmnq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m864w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5tqv"]
+
+[node name="BubbleShell" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 100)
+offset_right = 300.0
+offset_bottom = 140.0
+theme = ExtResource("1_yxjpw")
+script = ExtResource("2_wgn3k")
+
+[node name="ContentMargins" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Post" parent="ContentMargins" instance=ExtResource("3_v8j2w")]
+layout_mode = 2
+
+[node name="Bubble" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wfbeb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6jqq8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gbmnq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m864w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l5tqv")
+
+[connection signal="pressed" from="Bubble" to="ContentMargins/Post" method="_on_bubble_pressed"]
