@@ -37,13 +37,13 @@ Basically, any implementation that has a working API implementation should work.
 # FAQ: 
 Q: Will this work with (insert revival here)?
 
-A: As said above, this app will theoretically work with any Miiverse revival that has an API. Mileage will vary with it based on how much of the API the service has implemented, as MiiTraverse uses a lot of different API endpoints. 
+- A: As said above, this app will theoretically work with any Miiverse revival that has an API. Mileage will vary with it based on how much of the API the service has implemented, as MiiTraverse uses a lot of different API endpoints. 
 
 Q: Why not use the official Miiverse icon font?
 
-A: Copyright reasons, and also to maintain a revival-agnostic look. If you want a version with those icons, I will not provide that for you. However, considering the nature of this being open source, I'm not gonna stop you from self-compiling a version that uses those icons, assuming you legally obtained them.
+- A: Copyright reasons, and also to maintain a revival-agnostic look. If you want a version with those icons, I will not provide that for you. However, considering the nature of this being open source, I'm not gonna stop you from self-compiling a version that uses those icons, assuming you legally obtained them.
 
 Q: Why do you not provide a built in set of custom stamps? 
 
-A: Partially copyright, partially "I'm not an artist", and partially, I just don't want to deal with people requesting to add things to a built-in set. Also, keeps the base app installation size smaller. I have tutorials up on how to create custom stamps, and people are welcome to host their own repos with custom stamp sets.
+- A: Partially copyright, partially "I'm not an artist", and partially, I just don't want to deal with people requesting to add things to a built-in set. Also, keeps the base app installation size smaller. I will put tutorials up on how to create custom stamps, and people are welcome to host their own repos with custom stamp sets.
 
