@@ -32,6 +32,7 @@ Additionally, the following can be used with the app but are not included
 * Save and swap between different Miiverse implementations on the fly (*mostly* done)
 
 # Future features:
+* Multiple registered/registerable account servers (ie. Pretendo Network, Nintendo Network, etc.)
 * Downloading images (paintings, screenshots, and Mii icons)
 * Posting
 * Custom stamps
