@@ -15,6 +15,7 @@ This app will not magically make you a hackerman capable of evading rules. You a
 This app does not include, but will require, the following:
 * An already created (and not banned) account on the revival you are accessing
 * console certificates from either a Wii U or a 3DS
+* A Miiverse instance to access
 
 Additionally, the following can be used with the app but are not included
 * Custom stamps
