@@ -32,3 +32,16 @@ So, when making a new profile, the actual writing of settings is 90% handled by 
 So how does it work?
 
 Well, first a section name is created for the profile, and written to settings. Then, NetworkIndexLoad is called on SetBase, reloading all the settings. This is inefficient, and maybe someday I'll make it not do this, but for right now, it's an *okay* solution to the problem. When NetworkIndexLoad is called, as previously mentioned, it will create a profile bubble for every non blacklisted section it makes. Because we added a new section, this means that a new bubble will be created for our new profile, and as a cascade effect of this, our bubble will fill itself with the default settings because it lacks settings in the settings file.
+
+# SetBase
+* Determines the values of the in-app/in-memory settings (whether to use cache, what color the UI should be)
+* Loads in SetGlobal
+* Loads in SetProfile based on sections present in the settings file
+  * Change to add based on values in the networkarray
+# SetGlobal
+* Checks for the existence of the settings file
+* Creates settings file if it doesn't exist
+* Writes global settings to the settings file
+# SetProfile
+
+
