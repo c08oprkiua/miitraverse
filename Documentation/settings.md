@@ -13,4 +13,6 @@ So how does it work then?
 
 # Initial Loading
 
-When MiiTraverse first loads
+When MiiTraverse first loads, SetBase is loaded. This is because neither SetGlobal nor SetProfile(s) have been instantiated into existence. It will start by loading in SetGlobal. 
+
+SetGlobal will then make a check for the settings file, and create it and write all global settings, as defined in the Project Settings, if it does not yet exist. 
