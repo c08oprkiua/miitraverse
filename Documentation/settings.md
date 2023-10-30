@@ -42,6 +42,7 @@ Well, first a section name is created for the profile, and written to settings. 
 * Checks for the existence of the settings file
 * Creates settings file if it doesn't exist
 * Writes global settings to the settings file
+ * Resets settings to default values 
 # SetProfile
-
+* Writes specific profile settings 
 
