@@ -30,10 +30,12 @@ Additionally, the following can be used with the app but are not included
 
 # Features:
 * ~~existing~~
-* Custom settable UI color, with per-profile overrides
+* Customizable UI color, with per-profile overrides
 
 # Incomplete features: 
-* Server authentication (service tokens) using account server(s)
+* Server authentication (service tokens) using account server(s):
+ * 3DS-accurate requests
+ * Wii U-Accurate requests
 * The `param-pack` needs to be completed to properly reflect the locale of the device and/or user account.
 * Processing XML data. It can currently properly process the XML response from:
   * `/v1/communities/`
@@ -50,6 +52,7 @@ Basically, any implementation that has a working API implementation should work.
 * Juxtaposition (If you have access to it)
 * Sapphire
 * Rverse3 (when it's out, at least)
+* Rverse2.5??? Maybe???
 
 # FAQ: 
 Q: Will this work with (insert revival here)?
@@ -63,4 +66,11 @@ Q: Why not use the official Miiverse icon font?
 Q: Why do you not provide a built in set of custom stamps? 
 
 - A: Partially copyright, partially "I'm not an artist", and partially, I just don't want to deal with people requesting to add things to a built-in set. Also, keeps the base app installation size smaller. I will put tutorials up on how to create custom stamps, and people are welcome to host their own repos with custom stamp sets.
+
+# Credits, Thank-yous, etc.
+- NoNameGiven and Mikey of Sapphire
+- Jon and Jemma of Pretendo
+- Terminal and Oman of Rverse3/Rverse2
+- [This project](https://github.com/MatthewL246/Miiverse-PC)
+- [This documentation](https://github.com/kinnay/NintendoClients/wiki)
 
