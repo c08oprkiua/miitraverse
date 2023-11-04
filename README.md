@@ -27,10 +27,9 @@ This app does not include, but will require, the following:
 Additionally, the following can be used with the app but are not included
 * Custom stamps
 
-
 # Features:
-* ~~existing~~
 * Customizable UI color, with per-profile overrides
+* Adding and removing profiles
 
 # Incomplete features: 
 * Server authentication (service tokens) using account server(s):
@@ -39,7 +38,6 @@ Additionally, the following can be used with the app but are not included
 * The `param-pack` needs to be completed to properly reflect the locale of the device and/or user account.
 * Processing XML data. It can currently properly process the XML response from:
   * `/v1/communities/`
-* Save and swap between different Miiverse implementations on the fly (*mostly* done)
 
 # Future features:
 * Multiple registered/registerable account servers (ie. Pretendo Network, Nintendo Network, etc.)
