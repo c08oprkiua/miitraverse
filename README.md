@@ -33,8 +33,8 @@ Additionally, the following can be used with the app but are not included
 
 # Incomplete features: 
 * Server authentication (service tokens) using account server(s):
- * 3DS-accurate requests
- * Wii U-Accurate requests
+  * 3DS-accurate requests
+  * Wii U-Accurate requests
 * The `param-pack` needs to be completed to properly reflect the locale of the device and/or user account.
 * Processing XML data. It can currently properly process the XML response from:
   * `/v1/communities/`
