@@ -1,8 +1,12 @@
 # Settings
-Ever wondered how the settings work? No? Well too bad, I wrote this for myself so I could keep track of it and decided not to delete it from the documentation. 
+In a literal sense, settings exist as the following custom Resources:
 
-Settings is divided into 3 main scripts of interest:
+* Profile (Profile.gd)
+* GlobSet (Globals.gd)
 
+Settings, in the processing sense, are divided into 4 scripts, based on functions:
+
+* database.gd ("DaBa")
 * SetBase.gd
 * SetGlobal.gd
 * SetProfile.gd
@@ -15,9 +19,14 @@ So how does it work then?
 
 When MiiTraverse first loads, SetBase is loaded. This is because neither SetGlobal nor SetProfile(s) have been instantiated into existence. SetBase is responsible for instantiating them, and it will start by loading in SetGlobal. 
 
-SetGlobal itself, when loaded in, will then make a check for the settings file, and create it and write all global settings, as defined in the Project Settings, if it does not yet exist. 
+In the database file (which is autoloaded and accessed in code with the "DaBa" name), there is a helper function that either returns the settings file if it exists, or returns a new settings file if not.
 
-Back to SetBase, its next course of action is to load in all the SetProfiles that it should load in. It does this by looking for all the sections in the settings file that are not blacklisted (blacklist for Globals and other sections), and for every section it finds, it makes a profile.
+SetGlobal itself, when loaded in, will call this function, and when it gets the GlobSet returned by it, parses it for all its values. With these values, it does two things:
+
+* Sets the copies of these values seen in DaBa
+* Sets the states of the various UI elements in the GlobalSettings scene
+
+Back to SetBase, its next course of action is to load in all the SetProfiles that it should load in. It does this by looking for all the directories in the `user://` directory, excluding the shader_cache and other Godot system directories. I may change this to just look for the `settings.tres` file in each folder, cause obviously it wouldn't exist in any folder besides the profiles (more on that in a bit).
 
 But wait, we have one small issue: The internally stored profile, the default settings, does not have a section nor values in the settings file at this point.
 
