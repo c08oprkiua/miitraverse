@@ -28,15 +28,15 @@ SetGlobal itself, when loaded in, will call this function, and when it gets the 
 
 Back to SetBase, its next course of action is to load in all the SetProfiles that it should load in. It does this by looking for all the directories in the `user://` directory, excluding the shader_cache and other Godot system directories. I may change this to just look for the `settings.tres` file in each folder, cause obviously it wouldn't exist in any folder besides the profiles (more on that in a bit).
 
-But wait, we have one small issue: The internally stored profile, the default settings, does not have a section nor values in the settings file at this point.
-
-To solve this, let's jump back to the part where the SetGlobal writes up all the settings if they don't exist. While it's doing this, it will also write in the section name of MiiTraverse's internal default profile, so that it will show up in the list. 
-
-Now, I'm going to take a divergence into how making new profiles is handled, but I swear it's not to leave loose ends about loading.
+But wait, we have one small issue: The directory of the internally stored default profile does not yet exist. 
 
 # Making New Profiles
 
-So, when making a new profile, the actual writing of settings is 90% handled by SetProfile. SetProfile has a function to load up default values, both to reset to defaults under the user's request, and also to initialize the internally stored defaults if it doesn't have them. 
+There are two main components when making new profiles: The validity check, and the actual creation. 
+
+The validity check happens in a custom window bubble. (More on that later, as to not get off-topic).
+
+The actual creation of the settings, after the name is validated, happens mostly in SetProfile.
 
 So how does it work?
 
