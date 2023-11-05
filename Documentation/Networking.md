@@ -1,4 +1,4 @@
-MiiTraverse has a networking node, autoloaded at startup, that manages both logins and API requests. 
+MiiTraverse has two networking node, autoloaded at startup, that manage Account Server and API requests, respectively. 
 
 
 # Account server design:
