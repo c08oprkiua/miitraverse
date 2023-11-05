@@ -44,3 +44,7 @@ Nintendo Service token
 
 Console certificate:
 * Endpoints check for a certificate
+
+Network array load:
+* New profiles are made with a directory scheme of `Profile[int]`, with their profile settings stored in `settings.tres`
+* The array creating function looks for all folders that follow the above scheme, and then for each one, adds its name to the optionbutton listings. 
