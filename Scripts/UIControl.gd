@@ -1,18 +1,17 @@
 extends Control
-
-var itname 
-var information
-var commtoggle
-var currenttab
+ 
+var currenttab: StringName
 @onready var homebutton = $"ButtonBar/Home"
 @onready var homecontent = $"UIMargin/MainUI/SpacedContent/HomeList"
 
 func _ready():
 	Satellite.connect("SwitchTabs", SwitchTabs)
-	Network.ConnectionManager(0)
+	Satellite.connect("NewPopUp", MakePopupWindow)
+	API.ConnectionManager(0)
 	homebutton.set_pressed(true)
 
-func SwitchTabs(tabnow, active):
+#This is a special function that sets the tab back to Home if a tab is unselected 
+func SwitchTabs(tabnow: StringName, active: bool):
 	if active: 
 		currenttab = tabnow
 		if tabnow != "Home":
@@ -21,6 +20,9 @@ func SwitchTabs(tabnow, active):
 		if tabnow == currenttab:
 			homecontent.show()
 			homebutton.set_pressed_no_signal(true)
+
+func MakePopupWindow(window: PackedScene):
+	add_child(window.instantiate())
 
 func _on_communities_toggled(button_pressed):
 	Satellite.emit_signal("SwitchTabs", "Communities", button_pressed)

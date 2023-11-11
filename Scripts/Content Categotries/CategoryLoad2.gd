@@ -1,6 +1,5 @@
-extends FlowContainer
-class_name CatFlowContainer
-
+extends BoxContainer
+class_name CatBoxContainer
 
 @export_category("Content Category")
 @export var ContentName: StringName
@@ -15,10 +14,14 @@ class_name CatFlowContainer
 
 var xml = XMLParser.new()
 
+var genericitem
+var converted
+
 signal WhenActive
 signal WhenInactive
 
 func _ready():
+	#Converts the enum into the plain text key
 	Satellite.connect("SwitchTabs", VisibilityToggle)
 
 #This will also manage triggering the loading/downloading of content for a page

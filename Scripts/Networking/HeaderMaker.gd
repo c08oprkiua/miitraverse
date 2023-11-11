@@ -3,7 +3,7 @@ extends RefCounted
 var appver: String = "0.0.1"
 
 var parampack
-var servicetoken
+
 
 var headers = {
 	"x-nintendo-parampack": parampack

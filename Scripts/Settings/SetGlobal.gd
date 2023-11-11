@@ -1,11 +1,11 @@
 extends VBoxContainer
 
-var config = DaBa.settings
-
 #Partly just here so I am 200% sure I don't typo, lol
-const setpath = "user://settings.ini"
+
 var indexnum = 0
 var tempcolor
+
+var sets: GlobSet
 
 #Key should match the desired setting in settings.ini,
 #Value has to match a UNIQUE node name in the settings tree
@@ -13,70 +13,56 @@ const nodeindex = {
 	"Mimicked_Device": "SpoofClients/ClientSpoof",
 	"Network": "DefaultNetwork/DefaultNetwork",
 	"OfflineCache": "Cache",
-	"DebugMode": "DebugMode",
+
 	"Tint": "DefaultTint/Picker",
-	"3DS_Certificate": "", #The console cert necessary to fully mimic a 3DS
-	"Wii_U_Certificate": "", #The console cert necessary to fully mimic a Wii U 
+	"3DS_Certificate": "3DSCert/LineEdit", #The console cert necessary to fully mimic a 3DS
+	"Wii_U_Certificate": "WiiUCert/LineEdit", #The console cert necessary to fully mimic a Wii U 
 	"OverrideTints": "OverrideColors",
 }
 
 const globals = [
-	"DebugMode",
-	"Fallback_Network",
-	"Fallback_URL",
 	"OfflineCache",
-	"Mimicked_Device",
 	"3DS_Certificate",
 	"Wii_U_Certificate",
 	"Tint",
-	"OverrideTints",
 ]
 
 func _ready():
-	if not FileAccess.file_exists(setpath):
-		Defaults()
+	sets = DaBa.SettingsCheck()
 	ButtonsSet()
 
 #This is the magic function that sets all the button states in settings
 func ButtonsSet():
-	for entries in config.get_section_keys("Globals"):
+	for entries in nodeindex.keys():
 		var node = nodeindex.get(entries)
-		match entries:
-			"DebugMode", "OfflineCache", "OverrideTints":
-				get_node(node).set_pressed(config.get_value("Globals", entries))
-			"Mimicked_Device":
-				pass
-			"3DS_Certificate", "Wii_U_Certificate":
-				pass
-			"Tint":
-				get_node(node).set_pick_color(config.get_value("Globals", entries))
+		var globval = sets.get(entries)
+		match typeof(globval):
+			TYPE_BOOL:
+				get_node(node).set_pressed(globval)
+			TYPE_INT:
+				get_node(node).select(globval)
+			TYPE_STRING:
+				get_node(node).text = globval
+			TYPE_COLOR:
+				get_node(node).set_pick_color(globval)
+		DaBa.set(entries, sets.get(entries))
 
-func Defaults():
-	for values in globals:
-		var settingvalue = ProjectSettings.get_setting("MiiTraverse/Globals/"+values)
-		DaBa.settings.set_value("Globals", values, settingvalue)
-	DaBa.settings.set_value("Globals", "Network", 
-	ProjectSettings.get_setting("MiiTraverse/Globals/Fallback_Network"))
-
-func Globalset(settingname, value):
-	config.set_value("Globals", settingname, value)
-	config.save(setpath)
+func Globalset(settingname: StringName, value):
+	DaBa.set(settingname, value)
+	sets.set(settingname, value)
+	ResourceSaver.save(sets, GlobSet.savepath)
 
 func _on_cache_toggled(button_pressed):
 	Globalset("OfflineCache", button_pressed)
 
 func _on_set_reset_pressed():
-	Defaults()
-
-func _on_debug_mode_toggled(button_pressed):
-	Globalset("DebugMode", button_pressed)
-
-func _on_client_spoof_item_selected(index):
-	index = index+1
-	Globalset("Mimicked_Device", index)
+	sets.Defaults()
 
 func _on_default_network_item_selected(index):
-	Globalset("Network", Network.networkarray.get(index))
+	Globalset("DefaultNetwork", DaBa.ProfileArray[index])
+
+func _on_default_network_item_focused(index):
+	Globalset("DefaultNetwork", DaBa.ProfileArray[index])
 
 func _on_picker_color_changed(color):
 	tempcolor = color
@@ -88,4 +74,13 @@ func _on_picker_popup_closed():
 	Globalset("Tint", tempcolor)
 
 func _on_add_profile_pressed():
-	pass # Replace with function body.
+	#var profpopup: PackedScene = load("res://Scenes/name_dialogue.tscn")
+	#Satellite.emit_signal("NewPopUp", profpopup)
+	var newindex:int = 1
+	while DaBa.ProfileArray.has(newindex):
+		newindex += 1
+	Satellite.emit_signal("NewProfile", newindex)
+	Satellite.emit_signal("RefreshNetworks")
+
+
+

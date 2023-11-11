@@ -1,7 +1,6 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dvq7v5w1vjgs0"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h30p1"]
-load_path = "res://.godot/imported/tabbg1.svg-dacd23408f43cf5ceb5f10b111ba45da.ctex"
+[ext_resource type="Texture2D" uid="uid://cl7422cmqo1dd" path="res://TRESfiles/TopBar/gradiant.tres" id="1_wddsa"]
 
 [resource]
-texture = SubResource("CompressedTexture2D_h30p1")
+texture = ExtResource("1_wddsa")

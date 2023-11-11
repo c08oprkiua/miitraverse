@@ -1,19 +1,33 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bino38unkump7"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bino38unkump7"]
 
 [ext_resource type="StyleBox" uid="uid://x5o161wvwsjw" path="res://TRESfiles/Bubbles/button.tres" id="1_b6aao"]
 [ext_resource type="StyleBox" uid="uid://wxta7874u14g" path="res://TRESfiles/Bubbles/bubble.tres" id="1_mk3ha"]
 [ext_resource type="StyleBox" uid="uid://da2yvn26fsjev" path="res://TRESfiles/Bubbles/buttonpressed.tres" id="2_nvubi"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amx74"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4thqp"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sdx5m"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtc4a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwgp6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_22p1y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s8m4v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utl2o"]
 
 [resource]
 BoxContainer/constants/separation = 10
-Button/styles/focus = SubResource("StyleBoxEmpty_amx74")
-Button/styles/hover = SubResource("StyleBoxEmpty_sdx5m")
+Button/styles/focus = ExtResource("1_b6aao")
+Button/styles/hover = ExtResource("1_b6aao")
 Button/styles/normal = ExtResource("1_b6aao")
 Button/styles/pressed = ExtResource("2_nvubi")
+CheckButton/styles/disabled = SubResource("StyleBoxEmpty_4thqp")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_qtc4a")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_wwgp6")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_22p1y")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_s8m4v")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_utl2o")
 MarginContainer/constants/margin_bottom = 0
 PanelContainer/styles/panel = ExtResource("1_mk3ha")
 VBoxContainer/constants/separation = 30
