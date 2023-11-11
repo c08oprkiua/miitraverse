@@ -1,7 +1,7 @@
 # MiiTraverse
 A Miiverse frontend for Android
 
-The end goal of this project is to provide a full frontend for accessing multiple [Miiverse instances](https://github.com/c08oprkiua/miiverse-android/blob/main/README.md#implementations-that-should-work) from a single app on an Android device. Currently, it is not far along, because this is only one of many things spread across my overall workload. But, by the end, it will hopefully be a 1:1 way to access all your favorite Miiverse content from the comfort of your phone or tablet, with some nice QoL things that come from the fact that it's on a phone (like downloading media, and maybe notifications...?).
+The end goal of this project is to provide a full frontend for accessing multiple [Miiverse revivals](https://github.com/c08oprkiua/miiverse-android/blob/main/README.md#implementations-that-should-work) from a single app. Currently, it is not far along, because this is only one of many things spread across my overall workload. But, by the end, it will hopefully be a 1:1 way to access all your favorite Miiverse content from the comfort of your phone or tablet, with some nice QoL things that come from the fact that it's on a phone (like downloading media, and maybe notifications...?).
 
 Currently, the GUI elements it uses are a mix of Godot-native styleboxes and [Articons Dark](https://github.com/Donnnno/Arcticons) icons. If anyone has the skills to create custom icons for this and would like to, I will welcome submissions for custom icons with open arms. 
 
@@ -32,38 +32,48 @@ Additionally, the following can be used with the app but are not included
 * Adding and removing profiles
 
 # Incomplete features: 
-* Server authentication (service tokens) using account server(s):
-  * 3DS-accurate requests
-  * Wii U-Accurate requests
-* The `param-pack` needs to be completed to properly reflect the locale of the device and/or user account.
-* Processing XML data. It can currently properly process the XML response from:
-  * `/v1/communities/`
+- [ ] Server authentication (service tokens) using account server(s);
+  - [ ]  3DS-accurate requests
+  - [ ]  Wii U-Accurate requests
+- [ ] The `param-pack` needs to be completed to properly reflect the locale of the device and/or user account.
+- [ ] Processing XML data from:
+  - [ ] `/v1/communities/`
+  - [ ] `/v1/communities/{id}/posts/`
+  - [ ] `v1/topics`
 
 # Future features:
-* Multiple registered/registerable account servers (ie. Pretendo Network, Nintendo Network, etc.)
-* Downloading images (paintings, screenshots, and Mii icons)
-* Posting
-* Custom stamps
+- [x] Multiple registered/registerable account servers (ie. Pretendo Network, Nintendo Network, etc.)
+- [ ] Downloading images (paintings, screenshots, and Mii icons)
+- [ ] Posting
+- [ ] Custom stamps
 
 # Implementations that *should* work:
 Basically, any implementation that has a working API implementation should work. Some that have said API, as far as I'm aware, include: 
 * Juxtaposition (If you have access to it)
-* Sapphire
 * Rverse3 (when it's out, at least)
-* Rverse2.5??? Maybe???
 
 # FAQ: 
-Q: Will this work with (insert revival here)?
+> Q: Will this work with (insert revival here)?
 
-- A: As said above, this app will theoretically work with any Miiverse revival that has an API. Mileage will vary with it based on how much of the API the service has implemented, as MiiTraverse uses a lot of different API endpoints. 
+- This app will theoretically work with any Miiverse revival that has an API.
 
-Q: Why not use the official Miiverse icon font?
+Mileage will vary with it based on how much of the API the given revival has implemented, as MiiTraverse uses a lot of (if not most/all of the) different API endpoints provided by the original Miiverse. 
 
-- A: Copyright reasons, and also to maintain a revival-agnostic look. If you want a version with those icons, I will not provide that for you. However, considering the nature of this being open source, I'm not gonna stop you from self-compiling a version that uses those icons, assuming you legally obtained them.
+> Q: Why not use the official Miiverse icon font?
 
-Q: Why do you not provide a built in set of custom stamps? 
+- Copyright reasons
+- To maintain a revival-agnostic look.
 
-- A: Partially copyright, partially "I'm not an artist", and partially, I just don't want to deal with people requesting to add things to a built-in set. Also, keeps the base app installation size smaller. I will put tutorials up on how to create custom stamps, and people are welcome to host their own repos with custom stamp sets.
+If you want a version with those icons, I will not provide that for you. However, considering the nature of this being open source, I'm not gonna stop you from self-compiling a version that uses those icons, assuming you legally obtained them.
+
+> Q: Why do you not provide a built in set of custom stamps? 
+
+- Partially copyright
+- Partially "I'm not an artist"
+- Partially, I just don't want to deal with people requesting to add things to a built-in set.
+- Keeps the base app installation size smaller.
+
+I will put tutorials up on how to create custom stamps, and people are welcome to host their own repos with custom stamp sets.
 
 # Credits, Thank-yous, etc.
 - NoNameGiven and Mikey of Sapphire
