@@ -40,6 +40,7 @@ Additionally, the following can be used with the app but are not included
   - [ ] `/v1/communities/`
   - [ ] `/v1/communities/{id}/posts/`
   - [ ] `v1/topics`
+- [ ] Apps for 3DS and Wii U that dump [relevant console information](https://github.com/kinnay/NintendoClients/wiki/Account-Server) for use with this app
 
 # Future features:
 - [x] Multiple registered/registerable account servers (ie. Pretendo Network, Nintendo Network, etc.)
