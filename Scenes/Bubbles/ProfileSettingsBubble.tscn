@@ -1,25 +1,112 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwie1h5jw5hi4"]
+[gd_scene load_steps=10 format=3 uid="uid://fux5aw3v5tqe"]
 
 [ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_hmpp4"]
 [ext_resource type="Script" path="res://Scripts/Misc Custom Classes/Bubble.gd" id="2_0axk8"]
 [ext_resource type="PackedScene" uid="uid://bqu25xw7yiqxk" path="res://Scenes/Content/profile_settings.tscn" id="3_0p6tn"]
+[ext_resource type="Script" path="res://Scripts/Bubble Managers/FancyAnimation.gd" id="4_w7djf"]
+
+[sub_resource type="Animation" id="Animation_1nfmb"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"selfdelete"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_geulh"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mx3gf"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_w0q2c"]
+resource_name = "colorswitch"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kredh"]
+_data = {
+"RESET": SubResource("Animation_mx3gf"),
+"colorswitch": SubResource("Animation_w0q2c"),
+"fade_in": SubResource("Animation_geulh"),
+"fade_out": SubResource("Animation_1nfmb")
+}
 
 [node name="BubbleShell" type="PanelContainer"]
+modulate = Color(0, 0, 0, 0)
 custom_minimum_size = Vector2(300, 100)
 offset_right = 300.0
 offset_bottom = 140.0
+scale = Vector2(1e-05, 1e-05)
+mouse_filter = 2
 theme = ExtResource("1_hmpp4")
 script = ExtResource("2_0axk8")
 
-[node name="ContentMargins" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
-
-[node name="ProfileSettings" parent="ContentMargins" instance=ExtResource("3_0p6tn")]
+[node name="ProfileSettings" parent="." instance=ExtResource("3_0p6tn")]
 layout_mode = 2
 
-[node name="BubbleTexture" type="NinePatchRect" parent="."]
-layout_mode = 2
+[node name="Fancy" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kredh")
+}
+script = ExtResource("4_w7djf")
+
+[connection signal="DeleteRequest" from="." to="Fancy" method="_on_bubble_shell_delete_request"]
+[connection signal="tree_entered" from="." to="Fancy" method="_on_bubble_shell_tree_entered"]

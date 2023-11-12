@@ -1,18 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl1fcjf1dbgl2"]
+[gd_scene load_steps=4 format=3 uid="uid://bl1fcjf1dbgl2"]
 
 [ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_1h8af"]
 [ext_resource type="Script" path="res://Scripts/Misc Custom Classes/Bubble.gd" id="2_arkcv"]
-[ext_resource type="PackedScene" uid="uid://r5d11r5xwr2r" path="res://Scenes/Content/community2.tscn" id="3_6ei26"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w5ck6"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5w4ru"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jsxct"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37f8b"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bp3js"]
+[ext_resource type="PackedScene" uid="uid://r5d11r5xwr2r" path="res://Scenes/Content/community.tscn" id="3_4yhvs"]
 
 [node name="BubbleShell" type="PanelContainer"]
 custom_minimum_size = Vector2(300, 100)
@@ -23,18 +13,5 @@ size_flags_vertical = 3
 theme = ExtResource("1_1h8af")
 script = ExtResource("2_arkcv")
 
-[node name="ContentMargins" type="MarginContainer" parent="."]
+[node name="Content" parent="." instance=ExtResource("3_4yhvs")]
 layout_mode = 2
-
-[node name="Content" parent="ContentMargins" instance=ExtResource("3_6ei26")]
-layout_mode = 2
-
-[node name="Bubble" type="Button" parent="."]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_w5ck6")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_5w4ru")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_jsxct")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_37f8b")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bp3js")
-
-[connection signal="pressed" from="Bubble" to="ContentMargins/Content" method="_on_bubble_pressed"]

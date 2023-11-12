@@ -1,0 +1,127 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnbyott386isv"]
+
+[ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_27bn4"]
+[ext_resource type="Script" path="res://Scripts/Settings/SetGlobal.gd" id="1_twr3s"]
+[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/NetworkOption.gd" id="2_fpnh2"]
+[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/DevMimic.gd" id="3_hmlmj"]
+
+[node name="Globals" type="VBoxContainer"]
+theme = ExtResource("1_27bn4")
+script = ExtResource("1_twr3s")
+
+[node name="CategoryName" type="Label" parent="."]
+layout_mode = 2
+text = "Global settings"
+horizontal_alignment = 1
+
+[node name="Network" type="Label" parent="."]
+layout_mode = 2
+text = "Network"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Cache" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Offline Cache: "
+
+[node name="DefaultNetwork" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DefaultNetwork"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Default Profile"
+
+[node name="DefaultNetwork" type="OptionButton" parent="DefaultNetwork"]
+layout_mode = 2
+alignment = 2
+script = ExtResource("2_fpnh2")
+IsInOptions = true
+
+[node name="SpoofClients" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SpoofClients"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Default mimicked device: "
+
+[node name="ClientSpoof" type="OptionButton" parent="SpoofClients"]
+layout_mode = 2
+alignment = 2
+script = ExtResource("3_hmlmj")
+
+[node name="Certs" type="Label" parent="."]
+layout_mode = 2
+text = "Certificates and Console Information"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="3DSCert" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="3DSCert"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3DS Certificate: "
+
+[node name="LineEdit" type="LineEdit" parent="3DSCert"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WiiUCert" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WiiUCert"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Wii U Certificate: "
+
+[node name="LineEdit" type="LineEdit" parent="WiiUCert"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UI" type="Label" parent="."]
+layout_mode = 2
+text = "User Interface Customization"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DefaultTint" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DefaultTint"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Global Fallback UI color: "
+
+[node name="Picker" type="ColorPickerButton" parent="DefaultTint"]
+layout_mode = 2
+text = "Default UI color"
+alignment = 0
+edit_alpha = false
+
+[node name="OverrideColors" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Override other profile colors:"
+clip_text = true
+
+[node name="SetReset" type="Button" parent="."]
+layout_mode = 2
+text = "Reset to defaults"
+
+[node name="AddProfile" type="Button" parent="."]
+layout_mode = 2
+text = "Add profile"
+
+[connection signal="toggled" from="Cache" to="." method="_on_cache_toggled"]
+[connection signal="item_focused" from="DefaultNetwork/DefaultNetwork" to="." method="_on_default_network_item_focused"]
+[connection signal="item_selected" from="DefaultNetwork/DefaultNetwork" to="." method="_on_default_network_item_selected"]
+[connection signal="color_changed" from="DefaultTint/Picker" to="." method="_on_picker_color_changed"]
+[connection signal="popup_closed" from="DefaultTint/Picker" to="." method="_on_picker_popup_closed"]
+[connection signal="toggled" from="OverrideColors" to="." method="_on_override_colors_toggled"]
+[connection signal="pressed" from="SetReset" to="." method="_on_set_reset_pressed"]
+[connection signal="pressed" from="AddProfile" to="." method="_on_add_profile_pressed"]

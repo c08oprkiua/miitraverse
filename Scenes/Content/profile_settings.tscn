@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqu25xw7yiqxk"]
+[gd_scene load_steps=2 format=3 uid="uid://bqu25xw7yiqxk"]
 
 [ext_resource type="Script" path="res://Scripts/Settings/SetProfile.gd" id="1_a32mf"]
-[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/DevMimic.gd" id="2_ycwm4"]
 
 [node name="ProfileSettings" type="VBoxContainer"]
 script = ExtResource("1_a32mf")
@@ -11,60 +10,198 @@ layout_mode = 2
 text = "(Profile)"
 horizontal_alignment = 1
 
+[node name="Network" type="Label" parent="."]
+layout_mode = 2
+text = "Network"
+horizontal_alignment = 1
+
 [node name="Cache" type="CheckButton" parent="."]
 layout_mode = 2
 text = "Offline Cache"
+flat = true
 
 [node name="ProfileName" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="ProfileName"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Profile name: "
 
 [node name="ProfName" type="LineEdit" parent="ProfileName"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+alignment = 2
+expand_to_text_length = true
 
 [node name="APIURL" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="APIURL"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "API URL: "
 
 [node name="API" type="LineEdit" parent="APIURL"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="ShowLogin" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+text = "Show login information"
+
+[node name="Login" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Username" type="HBoxContainer" parent="Login"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Login/Username"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Username: "
+
+[node name="Username" type="LineEdit" parent="Login/Username"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Password" type="HBoxContainer" parent="Login"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Login/Password"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Password: "
+
+[node name="Password" type="LineEdit" parent="Login/Password"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+secret = true
 
 [node name="SpoofClients" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SpoofClients"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Currently mimicked device: "
 
 [node name="ClientSpoof" type="OptionButton" parent="SpoofClients"]
 layout_mode = 2
-size_flags_horizontal = 10
-script = ExtResource("2_ycwm4")
+alignment = 2
+item_count = 2
+popup/item_0/text = "Wii U"
+popup/item_0/id = 1
+popup/item_1/text = "3DS"
+popup/item_1/id = 2
+
+[node name="UIOptions" type="Label" parent="."]
+layout_mode = 2
+text = "User Interface Customization"
+horizontal_alignment = 1
+
+[node name="Spoilers" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Show spoilers by default:"
 
 [node name="DefaultTint" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="DefaultTint"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Custom UI color: "
 
 [node name="Picker" type="ColorPickerButton" parent="DefaultTint"]
 layout_mode = 2
-size_flags_horizontal = 10
 text = "Default UI color"
 alignment = 0
 
 [node name="UseTint" type="CheckButton" parent="."]
 layout_mode = 2
 text = "Use custom UI tint: "
+flat = true
+
+[node name="ShowMore" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+text = "Advanced Settings"
+
+[node name="More" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Region" type="HBoxContainer" parent="More"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="More/Region"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Requested Language:"
+
+[node name="RegionOpt" type="OptionButton" parent="More/Region"]
+layout_mode = 2
+alignment = 2
+item_count = 11
+selected = 1
+popup/item_0/text = "Japanese"
+popup/item_0/id = 0
+popup/item_1/text = "English"
+popup/item_1/id = 1
+popup/item_2/text = "French"
+popup/item_2/id = 2
+popup/item_3/text = "German"
+popup/item_3/id = 3
+popup/item_4/text = "Italian"
+popup/item_4/id = 4
+popup/item_5/text = "Spanish"
+popup/item_5/id = 5
+popup/item_6/text = "Chinese"
+popup/item_6/id = 6
+popup/item_7/text = "Korean"
+popup/item_7/id = 7
+popup/item_8/text = "Dutch"
+popup/item_8/id = 8
+popup/item_9/text = "Portuguese"
+popup/item_9/id = 9
+popup/item_10/text = "Russian"
+popup/item_10/id = 10
+
+[node name="AccountServers" type="Label" parent="More"]
+layout_mode = 2
+text = "Account Servers: "
+horizontal_alignment = 1
+
+[node name="Account3DS" type="HBoxContainer" parent="More"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="More/Account3DS"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3DS server:"
+
+[node name="Acc3DS" type="LineEdit" parent="More/Account3DS"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="AccountWiiU" type="HBoxContainer" parent="More"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="More/AccountWiiU"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Wii U server:"
+
+[node name="AccWiiU" type="LineEdit" parent="More/AccountWiiU"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
 
 [node name="SetReset" type="Button" parent="."]
 layout_mode = 2
@@ -75,9 +212,19 @@ layout_mode = 2
 text = "Remove Profile"
 
 [connection signal="toggled" from="Cache" to="." method="_on_cache_toggled"]
+[connection signal="text_changed" from="ProfileName/ProfName" to="." method="_on_prof_name_text_changed"]
+[connection signal="text_changed" from="APIURL/API" to="." method="_on_api_text_changed"]
+[connection signal="toggled" from="ShowLogin" to="." method="_on_show_login_toggled"]
+[connection signal="text_changed" from="Login/Username/Username" to="." method="_on_username_text_changed"]
+[connection signal="text_changed" from="Login/Password/Password" to="." method="_on_password_text_changed"]
 [connection signal="item_selected" from="SpoofClients/ClientSpoof" to="." method="_on_client_spoof_item_selected"]
+[connection signal="toggled" from="Spoilers" to="." method="_on_spoilers_toggled"]
 [connection signal="color_changed" from="DefaultTint/Picker" to="." method="_on_picker_color_changed"]
 [connection signal="popup_closed" from="DefaultTint/Picker" to="." method="_on_picker_popup_closed"]
 [connection signal="toggled" from="UseTint" to="." method="_on_use_tint_toggled"]
+[connection signal="toggled" from="ShowMore" to="." method="_on_show_more_toggled"]
+[connection signal="item_selected" from="More/Region/RegionOpt" to="." method="_on_region_opt_item_selected"]
+[connection signal="text_changed" from="More/Account3DS/Acc3DS" to="." method="_on_acc_3ds_text_changed"]
+[connection signal="text_changed" from="More/AccountWiiU/AccWiiU" to="." method="_on_acc_wii_u_text_changed"]
 [connection signal="pressed" from="SetReset" to="." method="_on_set_reset_pressed"]
 [connection signal="pressed" from="DeleteMe" to="." method="_on_delete_me_pressed"]

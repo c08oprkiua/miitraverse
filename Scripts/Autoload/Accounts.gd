@@ -5,6 +5,8 @@ var CurrentAccSer: StringName
 
 var response: PackedByteArray
 
+var headers: Array = []
+
 var thread = Thread.new()
 
 func WiiUConnect(input):
@@ -36,7 +38,23 @@ func AccServWiiU():
 		AccSer.poll()
 		if not retry:
 			break
-	AccSer.request(HTTPClient.METHOD_POST, "/v1/api/oauth20/access_token/generate", [])
+	#Importantly, returns the 0Auth2 token
+	AccSer.request(HTTPClient.METHOD_POST, "/v1/api/oauth20/access_token/generate", headers)
+	
+	
+	#This request uses the 0Auth2 token
+	AccSer.request(HTTPClient.METHOD_GET, "/v1/api/provider/service_token/@me", headers)
+
+func WiiUGet0Auth2():
+	pass
+
+func WiiUGetMiiverseToken():
+	pass
+
+func WiiUGetPID():
+	pass
+
+
 
 func AccServ3DS():
 	pass

@@ -86,3 +86,8 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "Replies:
 "
+
+[connection signal="toggled" from="Meta/Right/Yeah" to="." method="_on_yeah_toggled"]
+[connection signal="pressed" from="Content/Screenshot/DLScreenshot" to="." method="_on_dl_screenshot_pressed"]
+[connection signal="pressed" from="Content/Painting/DLPainting" to="." method="_on_dl_painting_pressed"]
+[connection signal="toggled" from="Content/Replies" to="." method="_on_replies_toggled"]

@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://pj0t14sthbuj"]
+[gd_scene load_steps=5 format=3 uid="uid://pj0t14sthbuj"]
 
-[ext_resource type="Script" path="res://Scripts/Settings/BaseSettings.gd" id="1_7h7nf"]
-[ext_resource type="PackedScene" uid="uid://pwuwhr3cx3im" path="res://Scenes/spacer.tscn" id="2_tme4v"]
-[ext_resource type="PackedScene" uid="uid://xhegtpbjejcr" path="res://Scenes/Bubbles/globalsettings.tscn" id="2_xkfo7"]
+[ext_resource type="Script" path="res://Scripts/Settings/SetBase.gd" id="1_4ryk7"]
+[ext_resource type="Theme" uid="uid://cr15ak4gb5krx" path="res://TRESfiles/ContentCategorySpacingTheme.tres" id="1_fpd0k"]
+[ext_resource type="PackedScene" uid="uid://dwie1h5jw5hi4" path="res://Scenes/Bubbles/ProfileSettingsBubble.tscn" id="2_kdrea"]
+[ext_resource type="PackedScene" uid="uid://cx1u5jeyqf22i" path="res://Scenes/Bubbles/GlobalSettingsBubble.tscn" id="4_bscy8"]
 
-[node name="Settings" type="VBoxContainer"]
+[node name="Settings" type="BoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7h7nf")
+theme = ExtResource("1_fpd0k")
+vertical = true
+script = ExtResource("1_4ryk7")
+Bubble = ExtResource("2_kdrea")
 
-[node name="Spacer" parent="." instance=ExtResource("2_tme4v")]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-
-[node name="Globals" parent="." instance=ExtResource("2_xkfo7")]
+[node name="BubbleShell" parent="." instance=ExtResource("4_bscy8")]
 layout_mode = 2

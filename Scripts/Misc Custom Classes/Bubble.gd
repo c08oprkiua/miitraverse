@@ -4,9 +4,10 @@ signal DeleteRequest
 
 @export var Content: PackedScene
 
+
 func _ready():
 	Satellite.connect("NewBubble", NewBubble)
-	connect("DeleteRequest", selfdelete)
+	#connect("DeleteRequest", selfdelete)
 
 func NewBubble():
 	add_theme_stylebox_override("NewBubble", DaBa.MountedBubble)

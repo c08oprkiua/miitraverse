@@ -17,7 +17,11 @@ var Tint: Color
 #from there, finding whatever data is needed through their settings.tres file
 var ProfileArray: Array[int] = []
 #This must be a value in the above array
+
 var CurrentProfile: int
+
+var MiiverseToken: String
+
 
 func ProfileArrayFiller():
 	for directories in DirAccess.get_directories_at("user://"):
