@@ -76,6 +76,8 @@ If you want a version with those icons, I will not provide that for you. However
 
 I will put tutorials up on how to create custom stamps, and people are welcome to host their own repos with custom stamp sets.
 
+If you have any unanswered questions, ask them in my [Discord](https://discord.com/invite/Mu6YUEmerN)
+
 # Credits, Thank-yous, etc.
 - NoNameGiven and Mikey of Sapphire
 - Jon and Jemma of Pretendo
