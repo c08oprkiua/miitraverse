@@ -1,15 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0bw14xp66y70"]
+[gd_scene load_steps=3 format=3 uid="uid://c0bw14xp66y70"]
 
-[ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_yxjpw"]
-[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/Bubble.gd" id="2_wgn3k"]
-[ext_resource type="PackedScene" uid="uid://cec48l6xdesc1" path="res://Scenes/Content/posts.tscn" id="3_v8j2w"]
+[ext_resource type="PackedScene" uid="uid://dlwwdti01bj1d" path="res://Scenes/Bubbles/bubbleshell.tscn" id="1_5f3mx"]
+[ext_resource type="PackedScene" uid="uid://cec48l6xdesc1" path="res://Scenes/Content/posts.tscn" id="2_m37hn"]
 
-[node name="BubbleShell" type="PanelContainer"]
-custom_minimum_size = Vector2(300, 100)
-offset_right = 300.0
-offset_bottom = 140.0
-theme = ExtResource("1_yxjpw")
-script = ExtResource("2_wgn3k")
-
-[node name="Post" parent="." instance=ExtResource("3_v8j2w")]
-layout_mode = 2
+[node name="BubbleShell" instance=ExtResource("1_5f3mx")]
+Content = ExtResource("2_m37hn")

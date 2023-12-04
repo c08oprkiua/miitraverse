@@ -1,6 +1,0 @@
-[gd_resource type="Theme" format=3 uid="uid://cr15ak4gb5krx"]
-
-[resource]
-BoxContainer/constants/separation = 20
-FlowContainer/constants/h_separation = 20
-FlowContainer/constants/v_separation = 20

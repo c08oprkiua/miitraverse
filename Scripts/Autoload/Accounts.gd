@@ -12,7 +12,7 @@ var thread = Thread.new()
 func WiiUConnect(input):
 	if not input is int:
 		return
-	var ProfRes: Profile = DaBa.ProfileCheck(input)
+	var ProfRes: ProfileRes = DaBa.ProfileCheck(input)
 	var APIURL: StringName = ProfRes.AccountServWiiU
 	if not CurrentAccSer == APIURL:
 		CurrentAccSer = APIURL

@@ -1,6 +1,0 @@
-[gd_resource type="StyleBoxFlat" format=3 uid="uid://bbcs272lhrtc3"]
-
-[resource]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8

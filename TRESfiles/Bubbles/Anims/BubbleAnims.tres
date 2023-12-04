@@ -1,0 +1,14 @@
+[gd_resource type="AnimationLibrary" load_steps=5 format=3 uid="uid://0b2182b2f2bx"]
+
+[ext_resource type="Animation" uid="uid://c4pyy4paub3r2" path="res://TRESfiles/Bubbles/Anims/fade_out.res" id="1_wpr8r"]
+[ext_resource type="Animation" uid="uid://cs6yvjnxqsm5a" path="res://TRESfiles/Bubbles/Anims/colorswitch.anim" id="2_jvnbu"]
+[ext_resource type="Animation" uid="uid://s5h2ov8bd6yg" path="res://TRESfiles/Bubbles/Anims/RESET.anim" id="3_4ui71"]
+[ext_resource type="Animation" uid="uid://kjycghtrmy7y" path="res://TRESfiles/Bubbles/Anims/fade_in.anim" id="4_efbvu"]
+
+[resource]
+_data = {
+"RESET": ExtResource("3_4ui71"),
+"colorswitch": ExtResource("2_jvnbu"),
+"fade_in 2": ExtResource("4_efbvu"),
+"fade_out": ExtResource("1_wpr8r")
+}

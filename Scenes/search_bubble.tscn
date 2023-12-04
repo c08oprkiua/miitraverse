@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bj1v3620yvq1h"]
 
 [ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_63bir"]
-[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/Bubble.gd" id="2_5n6sn"]
+[ext_resource type="Script" path="res://Scripts/Custom Classes/Bubble.gd" id="2_5n6sn"]
 
 [node name="ContentBubble" type="PanelContainer"]
 offset_right = 40.0

@@ -1,0 +1,1 @@
+bubbleshell and animnode are the core types, the rest all inheret from bubbleshell

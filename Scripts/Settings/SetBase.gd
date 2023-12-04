@@ -4,7 +4,7 @@ extends CatBoxContainer
 #	Manages the (re)instancing of bubbles in the Settings category
 #	Manages changing the color of bubbles when network is changed
 
-var savedsettings:GlobSet
+var savedsettings: GlobalSettingRes
 
 #var fallbacknet = ProjectSettings.get_setting("MiiTraverse/Globals/Fallback_Network")
 var fallbacknet: StringName = ProjectSettings.get_setting("MiiTraverse/Verse/Name")
@@ -48,7 +48,7 @@ func ActiveNow():
 
 func SetFuncVars(number: int):
 	#Check if cache should be enabled
-	var curprofres: Profile = DaBa.ProfileCheck(number)
+	var curprofres: ProfileRes = DaBa.ProfileCheck(number)
 	if DaBa.OfflineCache or curprofres.OfflineCache:
 		DaBa.UseCache = true
 	else:
@@ -64,7 +64,7 @@ func SetFuncVars(number: int):
 
 #Maybe move this to DaBa?
 func BlowBubbles():
-	var bubbletex = load("res://TRESfiles/Bubbles/bubble.tres")
+	var bubbletex = load("res://TRESfiles/Bubbles/bubble.stylebox")
 	bubbletex.bg_color = mountedcolor
 	DaBa.MountedBubble = bubbletex
 	Satellite.emit_signal("NewBubble")

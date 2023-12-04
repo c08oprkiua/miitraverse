@@ -1,6 +1,0 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c46le2y643wde"]
-
-[ext_resource type="Texture2D" uid="uid://bijms0hac4kuq" path="res://TRESfiles/BottomBar/gradiant.tres" id="1_xyuh7"]
-
-[resource]
-texture = ExtResource("1_xyuh7")

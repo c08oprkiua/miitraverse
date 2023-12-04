@@ -5,7 +5,7 @@ extends VBoxContainer
 var indexnum = 0
 var tempcolor
 
-var sets: GlobSet
+var sets: GlobalSettingRes
 
 #Key should match the desired setting in settings.ini,
 #Value has to match a UNIQUE node name in the settings tree
@@ -50,7 +50,7 @@ func ButtonsSet():
 func Globalset(settingname: StringName, value):
 	DaBa.set(settingname, value)
 	sets.set(settingname, value)
-	ResourceSaver.save(sets, GlobSet.savepath)
+	ResourceSaver.save(sets, GlobalSettingRes.savepath)
 
 func _on_cache_toggled(button_pressed):
 	Globalset("OfflineCache", button_pressed)

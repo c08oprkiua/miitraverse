@@ -3,7 +3,7 @@ extends VSplitContainer
 
 @onready var CommID
 var ScrollMode: bool
-var CommunityInfo
+var CommunityInfo: CommRes
 
 #This is an integer that is the "key" to getting the specific community's
 #data from the Tbl

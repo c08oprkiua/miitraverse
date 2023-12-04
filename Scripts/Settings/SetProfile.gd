@@ -2,8 +2,8 @@ extends VBoxContainer
 
 signal ProfSet
 
-var tempcolor
-var profres: Profile = Profile.new()
+var tempcolor:Color
+var profres: ProfileRes = ProfileRes.new()
 
 var profnum: int:
 	set(ProfVal):
@@ -15,7 +15,7 @@ var profnum: int:
 var filepath: String = "user://Profile"+String.num(profnum)+"/settings.tres"
 var basedir: String
 
-const nodeindex = {
+const nodeindex: Dictionary = {
 	"Mimicked_Device": "SpoofClients/ClientSpoof",
 	"Region": "More/Region/RegionOpt",
 	
@@ -44,7 +44,7 @@ func GrabInfo(mynumber):
 	profnum = mynumber
 	if not FileAccess.file_exists(filepath):
 		InitNewProfile()
-	profres = ResourceLoader.load(filepath) as Profile
+	profres = ResourceLoader.load(filepath) as ProfileRes
 	ButtonsSet()
 
 func InitNewProfile():
@@ -52,6 +52,17 @@ func InitNewProfile():
 	profres.Defaults()
 	profres.name = "Profile"+String.num(profnum)
 	ResourceSaver.save(profres, filepath)
+
+#WIP Recursive remove directory
+func RecursiveDirRemove(directory: String):
+	var dir = DirAccess.open(directory)
+	var dirdir: PackedStringArray = dir.get_directories()
+	if dirdir.size() > 0:
+		RecursiveDirRemove(dir.get_current_dir()+"/"+dirdir[0])
+	else:
+		for files in dir.get_files():
+			dir.remove(files)
+		DirAccess.remove_absolute(directory)
 
 #This is the magic function that sets all the button states in settings
 func ButtonsSet():

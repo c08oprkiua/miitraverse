@@ -1,11 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx1u5jeyqf22i"]
 
-[ext_resource type="PackedScene" uid="uid://dlwwdti01bj1d" path="res://Scenes/bubbleshell.tscn" id="1_d71g4"]
-[ext_resource type="PackedScene" uid="uid://bnbyott386isv" path="res://Scenes/Content/globalsettings.tscn" id="2_cyvuy"]
+[ext_resource type="PackedScene" uid="uid://dlwwdti01bj1d" path="res://Scenes/Bubbles/bubbleshell.tscn" id="1_h2vry"]
+[ext_resource type="PackedScene" uid="uid://bnbyott386isv" path="res://Scenes/Content/globalsettings.tscn" id="2_qdojk"]
 
-[node name="BubbleShell" instance=ExtResource("1_d71g4")]
-offset_right = 335.0
-offset_bottom = 436.0
-
-[node name="Globals" parent="." index="0" instance=ExtResource("2_cyvuy")]
-layout_mode = 2
+[node name="BubbleShell" instance=ExtResource("1_h2vry")]
+Content = ExtResource("2_qdojk")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsnp04xfvsctp"]
+
+[ext_resource type="AnimationLibrary" uid="uid://0b2182b2f2bx" path="res://TRESfiles/Bubbles/Anims/BubbleAnims.tres" id="1_7dn88"]
+[ext_resource type="Script" path="res://Scripts/Bubble Managers/FancyAnimation.gd" id="2_805vi"]
+
+[node name="Fancy" type="AnimationPlayer"]
+libraries = {
+"BubbleAnims": ExtResource("1_7dn88")
+}
+script = ExtResource("2_805vi")

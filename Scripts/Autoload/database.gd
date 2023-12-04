@@ -1,7 +1,7 @@
 extends Node
 
 const savepath: String = "user://settings.tres"
-var settings = GlobSet
+var settings: GlobalSettingRes
 
 #global variable versions of the settings, so that they can be accessed without having
 # a Global Settings class open
@@ -22,7 +22,6 @@ var CurrentProfile: int
 
 var MiiverseToken: String
 
-
 func ProfileArrayFiller():
 	for directories in DirAccess.get_directories_at("user://"):
 		if directories.contains("Profile"):
@@ -34,23 +33,24 @@ func ProfileArrayFiller():
 #Helper functions that check for somethings existence, and return a new instance if one isn't found
 
 #Global settings
-func SettingsCheck():
+func SettingsCheck() -> GlobalSettingRes:
 	if ResourceLoader.exists(savepath):
-		return ResourceLoader.load(savepath) as GlobSet
+		return ResourceLoader.load(savepath) as GlobalSettingRes
 	else:
-		var glob: GlobSet = GlobSet.new()
+		var glob: GlobalSettingRes = GlobalSettingRes.new()
 		glob.Defaults()
 		return glob
 
 #A given profile (number)'s settings
-func ProfileCheck(number: int):
+func ProfileCheck(number: int) -> ProfileRes:
+	var prof: ProfileRes = ProfileRes.new()
 	var profpath: String = "user://Profile"+String.num(number)+"/settings.tres"
 	if ResourceLoader.exists(profpath):
-		return ResourceLoader.load(profpath) as Profile
+		prof = ResourceLoader.load(profpath) as ProfileRes
 	else:
-		var prof: Profile = Profile.new()
+		prof = ProfileRes.new()
 		prof.Defaults()
-		return prof
+	return prof
 
 #The cache of a particular file, also sorts out the cache/buffer priority heirarchy
 func ContentCheck(number: int, file: String):

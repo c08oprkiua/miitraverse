@@ -5,6 +5,8 @@ extends Node
 var API = HTTPClient.new()
 var thread = Thread.new()
 
+#All endpoints!!!!
+#https://github.com/PretendoNetwork/miiverse-api/blob/main/src/services/api/index.ts
 
 #want to tie these variables together 
 #This might be scrappable (yay)
@@ -52,7 +54,7 @@ func FetchManager(page, filename):
 func ConnectionManager(input):
 	if not input is int:
 		return
-	var ProfRes: Profile = DaBa.ProfileCheck(input)
+	var ProfRes: ProfileRes = DaBa.ProfileCheck(input)
 	var APIURL: StringName = ProfRes.url
 	if not CurrentAPIHost == APIURL:
 		CurrentAPIHost = APIURL
@@ -89,7 +91,7 @@ func ConnectionTest():
 	API.poll()
 	var retry: bool = true
 	var timedout = get_tree().create_timer(10.0).timeout
-	connect(timedout.timeout, func(): retry = false)
+	timedout.connect(func(): retry = false)
 	while not API.get_status() == 5:
 		API.poll()
 		if not retry:

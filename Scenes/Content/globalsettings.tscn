@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bino38unkump7" path="res://TRESfiles/Bubbles/bubbletheme.tres" id="1_27bn4"]
 [ext_resource type="Script" path="res://Scripts/Settings/SetGlobal.gd" id="1_twr3s"]
-[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/NetworkOption.gd" id="2_fpnh2"]
-[ext_resource type="Script" path="res://Scripts/Misc Custom Classes/DevMimic.gd" id="3_hmlmj"]
+[ext_resource type="Script" path="res://Scripts/Custom Classes/NetworkOption.gd" id="2_fpnh2"]
+[ext_resource type="Script" path="res://Scripts/Custom Classes/DevMimic.gd" id="3_hmlmj"]
 
 [node name="Globals" type="VBoxContainer"]
 theme = ExtResource("1_27bn4")

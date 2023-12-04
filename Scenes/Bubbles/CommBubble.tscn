@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cln8ywupxio30"]
+
+[ext_resource type="PackedScene" uid="uid://dlwwdti01bj1d" path="res://Scenes/Bubbles/bubbleshell.tscn" id="1_q3afd"]
+[ext_resource type="PackedScene" uid="uid://r5d11r5xwr2r" path="res://Scenes/Content/community.tscn" id="2_3fjg8"]
+
+[node name="BubbleShell" instance=ExtResource("1_q3afd")]
+Content = ExtResource("2_3fjg8")
