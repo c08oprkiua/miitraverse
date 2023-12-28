@@ -1,13 +1,13 @@
 extends Node
 
-var AccSer = HTTPClient.new()
+var AccSer:HTTPClient = HTTPClient.new()
 var CurrentAccSer: StringName
 
 var response: PackedByteArray
 
 var headers: Array = []
 
-var thread = Thread.new()
+var thread:Thread = Thread.new()
 
 func WiiUConnect(input):
 	if not input is int:
@@ -17,7 +17,8 @@ func WiiUConnect(input):
 	if not CurrentAccSer == APIURL:
 		CurrentAccSer = APIURL
 		if ThreadBusyCheck():
-			thread.start(AccServWiiU())
+			#thread.start(AccServWiiU())
+			AccServWiiU()
 	#Cause if its a match, why reconnect to the same URL?
 
 func ThreadBusyCheck():
@@ -44,18 +45,35 @@ func AccServWiiU():
 	WiiUGetMiiverseToken()
 
 func ServerConnectLoop(timer_seconds: float) -> bool:
+	print("retry loop for ",timer_seconds," seconds")
 	var retry: bool = true
-	var timedout = get_tree().create_timer(timer_seconds).timeout
+	var quicktimer:Timer = Timer.new()
+	var timedout:Signal = quicktimer.timeout
+	timedout.connect(func(): retry = false)
+	quicktimer.one_shot = true
+	quicktimer.autostart = true
+	quicktimer.wait_time = timer_seconds
+	quicktimer.process_callback = Timer.TIMER_PROCESS_PHYSICS
+	self.add_child(quicktimer)
+	print(quicktimer.paused)
+	print(quicktimer.wait_time)
 	while not AccSer.get_status() == HTTPClient.STATUS_CONNECTED:
+		if quicktimer.is_stopped():
+			quicktimer.call_deferred("start")
 		AccSer.poll()
 		if not retry:
 			print("Acc: Connect attempt has timed out")
-			return false
-	return true
+			break
+		print(quicktimer.time_left)
+	if not retry:
+		return false
+	else:
+		return true
 
 func ServerRequestLoop(timer_seconds: float) -> PackedByteArray:
 	var retry: bool = true
-	var timedout = get_tree().create_timer(timer_seconds).timeout
+	var timedout:Signal = get_tree().create_timer(timer_seconds).timeout
+	timedout.connect(func(): retry = false)
 	while AccSer.get_status() == HTTPClient.STATUS_CONNECTING:
 		AccSer.poll()
 		if not retry:
@@ -82,10 +100,9 @@ func WiiUGetMiiverseToken():
 	print("Getting Miiverse token")
 	AccSer.request(HTTPClient.METHOD_GET, "/v1/api/provider/service_token/@me", headers)
 
+
 func WiiUGetPID():
 	pass
-
-
 
 func AccServ3DS():
 	pass

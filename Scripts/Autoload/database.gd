@@ -20,6 +20,7 @@ var ProfileArray: Array[int] = []
 
 var CurrentProfile: int
 
+var headersWiiU:WiiUHeaders
 var MiiverseToken: String
 
 func ProfileArrayFiller():
@@ -53,7 +54,7 @@ func ProfileCheck(number: int) -> ProfileRes:
 	return prof
 
 #The cache of a particular file, also sorts out the cache/buffer priority heirarchy
-func ContentCheck(number: int, file: String):
+func ContentCheck(number: int, file: String) -> PackedByteArray:
 	var filepath: String = "user://Profile"+String.num(number)+"/"+file
 	if UseCache:
 		print("Cache enabled")
@@ -78,6 +79,7 @@ func ContentCheck(number: int, file: String):
 			return PackedByteArray([])
 	else:
 		print("Well that's concerning")
+		return PackedByteArray([])
 
 
 
