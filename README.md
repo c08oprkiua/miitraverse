@@ -10,21 +10,21 @@ Currently, the GUI elements it uses are a mix of Godot-native styleboxes and [Ar
 This app is designed to mimic the requests a real console would make. To this extent, bans solely for using the app alone should not happen, nor should it be particularly detectable that this app is not a console, albeit one making some odd network requests. That being said...
 
 This app does not do any of the following:
-* Allow you to post screenshots where you aren't allowed to*
+* Allow you to post screenshots
 * Evade console/account bans
 * Sidestep access whitelists*
 * Prevent bans for otherwise bannable offenses*
-* Provide valid console certificates out of the box
+* Provide valid console information out of the box
 
 *Based on the rules and setup of the Miiverse revival you are accessing
 
 # Requirements:
 This app does not include, but will require, the following:
 * An already created (and not banned) account on the revival you are accessing
-* console certificates from either a Wii U or a 3DS
+* console information from either a Wii U or a 3DS
 * A Miiverse instance to access
 
-Additionally, the following can be used with the app but are not included
+Additionally, the following will be useable in the future with the app, but are not included:
 * Custom stamps
 
 # Features:
@@ -44,18 +44,20 @@ Additionally, the following can be used with the app but are not included
 - [ ] Downloading images (paintings, screenshots, and Mii icons)
 - [ ] Posting
 - [ ] Custom stamps
+- [ ] Easy cross-posting via an in-app post clipboard
 
 # Implementations that *should* work:
 Basically, any implementation that has a working API implementation should work. Some that have said API, as far as I'm aware, include: 
 * Juxtaposition (If you have access to it)
 * Rverse3 (when it's out, at least)
+* Aquamarine
 
 # FAQ: 
 > Q: Will this work with (insert revival here)?
 
 - This app will theoretically work with any Miiverse revival that has an API.
 
-Mileage will vary with it based on how much of the API the given revival has implemented, as MiiTraverse uses a lot of (if not most/all of the) different API endpoints provided by the original Miiverse. 
+Mileage will vary with it based on how much of the API the given revival has implemented, as MiiTraverse uses a lot of (if not most/all of the) different API endpoints provided by the original Miiverse. Or, in other words, features available to MiiTraverse are dependent on features provided by the revival.
 
 > Q: Why not use the official Miiverse icon font?
 
@@ -71,12 +73,18 @@ If you want a version with those icons, I will not provide that for you. However
 - Partially, I just don't want to deal with people requesting to add things to a built-in set.
 - Keeps the base app installation size smaller.
 
-I will put tutorials up on how to create custom stamps, and people are welcome to host their own repos with custom stamp sets.
+> Q: Why can't I post screenshots/images?
+
+- Privelage concerns
+
+Let's not beat around the bush, this app could very easily allow doing things that no one was ever intended to do with Miiverse. To that extent, for the safety of every revival, custom images (in the form of screenshots) will not be supported ever.
+
+When custom stamp support is added, I will put tutorials up on how to create custom stamps, which is the closest to custom images that MiiTraverse will officially support.
 
 If you have any unanswered questions, ask them in my [Discord](https://discord.com/invite/Mu6YUEmerN)
 
 # Credits, Thank-yous, etc.
-- NoNameGiven and Mikey of Sapphire
+- NoNameGiven and Mikey of Aquamarine
 - Jon and Jemma of Pretendo
 - Terminal and Oman of Rverse3/Rverse2
 - [This project](https://github.com/MatthewL246/Miiverse-PC)

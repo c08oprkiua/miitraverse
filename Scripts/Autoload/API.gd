@@ -8,23 +8,10 @@ var thread = Thread.new()
 #All endpoints!!!!
 #https://github.com/PretendoNetwork/miiverse-api/blob/main/src/services/api/index.ts
 
-#want to tie these variables together 
-#This might be scrappable (yay)
-#var formatas = {"id1": MountedEXT}: 
-#	get:
-#		if MountedEXT == formatas.get("id1"):
-#			return formatas
-#		else: 
-#			MountedEXT = formatas.get("id1")
-#			return formatas
-#var MountedEXT: 
-#	set(newEXT):
-#		MountedEXT = newEXT
-#		if formatas.get("id1") != newEXT:
-#			formatas["id1"] = MountedEXT
-
 var CurrentAPIHost: StringName
 var CurrentURL:String
+
+const endpoint:String = "/v1/endpoint"
 
 var headers:Array = []
 var response: PackedByteArray
@@ -64,10 +51,10 @@ func ConnectionManager(input):
 
 func ThreadBusyCheck():
 	if thread.is_alive():
-		print("thread is busy")
+		print("API: thread is busy")
 		return false
 	else: 
-		print("Proceeding to thread")
+		print("API: Proceeding to thread")
 		return true
 
 func WrapUpThread():
@@ -101,7 +88,7 @@ func APIPageRequest(page, filename):
 		IP.clear_cache(CurrentAPIHost)
 		InitialAPIConnect()
 		print("Doof")
-	API.request(HTTPClient.METHOD_GET, page, headers)
+	API.request(HTTPClient.METHOD_GET, page+endpoint, headers)
 	API.poll()
 	while API.get_status() != 7:
 		API.poll()

@@ -7,7 +7,8 @@ var currenttab: StringName
 func _ready():
 	Satellite.connect("SwitchTabs", SwitchTabs)
 	Satellite.connect("NewPopUp", MakePopupWindow)
-	API.ConnectionManager(0)
+	Accounts.WiiUConnect(0)
+	#API.ConnectionManager(0)
 	homebutton.set_pressed(true)
 
 #This is a special function that sets the tab back to Home if a tab is unselected 
