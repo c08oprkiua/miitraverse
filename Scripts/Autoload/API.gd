@@ -23,23 +23,21 @@ var thread = Thread.new()
 #		if formatas.get("id1") != newEXT:
 #			formatas["id1"] = MountedEXT
 
-
 var CurrentAPIHost: StringName
 var CurrentURL:String
 
-var headers = []
+var headers:Array = []
 var response: PackedByteArray
 
 var isfetch: bool
 signal Done
 
 #Unverified endpoints
-var asjson = "?json=1" #NoNameVerse specific: add to the end of any subURL to get the response as a JSON
-var icon = "/img/icons/{community_id}.jpg" #the icons
-var userpage = "users/show?pid=[{user_id}]"
-var mypage = "users/me"
-var newcontent = "/communities/{community_id}/new"
-var homepage = "/titles/show"
+var asjson:String = "?json=1" #NoNameVerse specific: add to the end of any subURL to get the response as a JSON
+var icon:String = "/img/icons/{community_id}.jpg" #the icons
+var userpage:String = "users/show?pid=[{user_id}]"
+var mypage:String = "users/me"
+var newcontent:String = "/communities/{community_id}/new"
 
 func _ready():
 	Satellite.connect("SwapNetworks", ConnectionManager)

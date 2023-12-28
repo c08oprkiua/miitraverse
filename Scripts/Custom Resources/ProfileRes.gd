@@ -18,6 +18,9 @@ class_name ProfileRes
 @export_group("Login information")
 @export var Username: String
 @export var Password: String
+#When the password is hashed, it will replace the plain-text password in the Password field
+#The below value indicates if the above stored password is a hashed password
+@export var PassHashed: bool
 @export var PID: String
 
 func Defaults():

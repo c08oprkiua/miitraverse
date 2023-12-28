@@ -24,7 +24,7 @@ class_name WiiUHeaders
 @export var ServiceToken: String
 @export var ParamPack: String
 
-var universalheaders = {
+var universalheaders:Dictionary = {
 	"X-Nintendo-Platform-ID": "PlatformID",
 	"X-Nintendo-Device-Type": "DeviceType",
 	"X-Nintendo-Device-ID": "DeviceID", #Returned by MCP_GetDeviceID on a Wii U
@@ -32,7 +32,7 @@ var universalheaders = {
 	"X-Nintendo-System-Version": "SystemVersion",
 	"X-Nintendo-Region": "Region",
 	"X-Nintendo-Country": "Country", #Country ID
-	"X-Nintendo-Client-ID": "ClientID", #Are these static?
+	"X-Nintendo-Client-ID": "ClientID", #Are these static? Also, should be sent with every request
 	"X-Nintendo-Client-Secret": "ClientSecret", #Are these static?
 	"X-Nintendo-FPD-Version": "FPD_Version", #areyousureaboutthat.png
 	"X-Nintendo-Environment": "XEnvironment",
@@ -46,7 +46,7 @@ var AccessTokenBody: Dictionary = {
 	"grant_type": "password",
 	"user_id": "",
 	"password": "",
-	#"password_type": "hash"
+	"password_type": "hash"
 }
 
 var MiiverseHeaders: Dictionary = {

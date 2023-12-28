@@ -12,7 +12,7 @@ var headers = {
 	
 }
 
-var paraminfo = ParamPack
+var paraminfo
 
 	#Example param pack, when decoded from Base64 (it sends encoded to Base64)
 #\title_id\1407375153045504\access_key\4045990404\platform_id\1\region_id\2
@@ -37,7 +37,7 @@ func parampackmaker():
 	var tz_name #America/Phoenix
 	var utc_offset #-25200
 	
-	var paramtemplate = ["title_id", title_id, 
+	var paramtemplate:Array = ["title_id", title_id, 
 	"access_key", access_key, 
 	"platform_id", platform_id, 
 	"region_id", region_id,

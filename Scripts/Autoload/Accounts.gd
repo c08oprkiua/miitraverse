@@ -39,17 +39,22 @@ func AccServWiiU():
 		if not retry:
 			break
 	#Importantly, returns the 0Auth2 token
-	AccSer.request(HTTPClient.METHOD_POST, "/v1/api/oauth20/access_token/generate", headers)
+	WiiUGet0Auth2()
 	
 	
 	#This request uses the 0Auth2 token
-	AccSer.request(HTTPClient.METHOD_GET, "/v1/api/provider/service_token/@me", headers)
+	WiiUGetMiiverseToken()
+
 
 func WiiUGet0Auth2():
-	pass
+	AccSer.request(HTTPClient.METHOD_POST, "/v1/api/oauth20/access_token/generate", headers)
+	#headers include:
+	# "Host", which is domain
+	#"X-Nintendo-Client-ID"
+	#"X-Nintendo-Client-Secret"
 
 func WiiUGetMiiverseToken():
-	pass
+	AccSer.request(HTTPClient.METHOD_GET, "/v1/api/provider/service_token/@me", headers)
 
 func WiiUGetPID():
 	pass
