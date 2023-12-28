@@ -36,10 +36,7 @@ Additionally, the following can be used with the app but are not included
   - [ ]  3DS-accurate requests
   - [ ]  Wii U-Accurate requests
 - [ ] The `param-pack` needs to be completed to properly reflect the locale of the device and/or user account.
-- [ ] Processing XML data from:
-  - [ ] `/v1/communities/`
-  - [ ] `/v1/communities/{id}/posts/`
-  - [ ] `v1/topics`
+- [ ] XML data processor (untested)
 - [ ] Apps for 3DS and Wii U that dump [relevant console information](https://github.com/kinnay/NintendoClients/wiki/Account-Server) for use with this app
 
 # Future features:
