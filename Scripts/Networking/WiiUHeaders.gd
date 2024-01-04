@@ -2,7 +2,7 @@ extends RefCounted
 class_name WiiUHeaders
 
 @export_group("Universal")
-@export var PlatformID: int = 1
+@export var PlatformID:ParPacDict.Platform_ID = ParPacDict.Platform_ID.WiiU
 @export var DeviceType: int = 2
 @export var DeviceID: int
 @export var SerialNumber: String
@@ -16,31 +16,25 @@ class_name WiiUHeaders
 @export var TitleID: int
 @export var UniqueID: String
 @export var ApplicationVersion: String
-
-@export_group("Access Token")
 @export var DeviceCert: String
 
-@export_group("Miiverse")
-@export var ServiceToken: String
-@export var ParamPack: String
-
-var universalheaders:Dictionary = {
-	"X-Nintendo-Platform-ID": "PlatformID",
-	"X-Nintendo-Device-Type": "DeviceType",
-	"X-Nintendo-Device-ID": "DeviceID", #Returned by MCP_GetDeviceID on a Wii U
-	"X-Nintendo-Serial-Number": "SerialNumber", #String
-	"X-Nintendo-System-Version": "SystemVersion",
-	"X-Nintendo-Region": "Region",
-	"X-Nintendo-Country": "Country", #Country ID
-	"X-Nintendo-Client-ID": "ClientID", #Are these static? Also, should be sent with every request
-	"X-Nintendo-Client-Secret": "ClientSecret", #Are these static?
-	"X-Nintendo-FPD-Version": "FPD_Version", #areyousureaboutthat.png
-	"X-Nintendo-Environment": "XEnvironment",
-	"X-Nintendo-Title-ID": "TitleID",
-	"X-Nintendo-Unique-ID": "UniqueID",
-	"X-Nintendo-Application-Version": "ApplicationVersion",
-	"X-Nintendo-Device-Cert": "DeviceCert",
-}
+var universalheaders:PackedStringArray = [
+	"X-Nintendo-Platform-ID", 
+	"X-Nintendo-Device-Type",
+	"X-Nintendo-Device-ID", #Returned by MCP_GetDeviceID on a Wii U
+	"X-Nintendo-Serial-Number", #String
+	"X-Nintendo-System-Version",
+	"X-Nintendo-Region",
+	"X-Nintendo-Country", #Country ID
+	"X-Nintendo-Client-ID", #Are these static? Also, should be sent with every request
+	"X-Nintendo-Client-Secret", #Are these static?
+	"X-Nintendo-FPD-Version", #areyousureaboutthat.png
+	"X-Nintendo-Environment",
+	"X-Nintendo-Title-ID",
+	"X-Nintendo-Unique-ID",
+	"X-Nintendo-Application-Version",
+	"X-Nintendo-Device-Cert",
+]
 
 var AccessTokenBody: Dictionary = {
 	"grant_type": "password",
@@ -49,29 +43,16 @@ var AccessTokenBody: Dictionary = {
 	"password_type": "hash"
 }
 
-var MiiverseHeaders: Dictionary = {
-	"X-Nintendo-ServiceToken" = "",
-	"X-Nintendo-Param-Pack" = ""
-	
-}
-
-var ParamPackContents: Dictionary = {
-	"title_id" = "",
-	"platform_id" = "",
-	"region_id" = "",
-	"language_id" = "",
-	"country_id" = "",
-}
-
 func UniHeaderBuilder(Region: int):
 	#Put value-setting bs here
 	
 	#This is the loop that creates the actual PackedStringSrray
 	var returned: PackedStringArray
-	for values in universalheaders.keys():
+	var tempstring:String
+	for values in universalheaders:
+		var keyvalue:String
 		returned.append(values)
-		var cont = universalheaders.get(values)
-		var val = self.get(cont)
+		var val = self.get(values)
 		returned.append(val)
 	return returned
 
@@ -85,4 +66,3 @@ func TokenHeaderBuilder(Username: String, Password: String):
 func PasswordToHashword(password: String, PID: String):
 	pass
 
-#Shamelessly copy pasted, cause no, I did not want to type allat

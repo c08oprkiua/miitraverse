@@ -165,12 +165,3 @@ enum countries {
 const areas = {
 	
 }
-
-#Information for server response codes and what they mean. Usually only for debugging,
-# but will show up in a small error bubble if it interferes with app usage.
-
-const responses = {
-	100: "continue",
-	101: "switching_protocols",
-	
-}

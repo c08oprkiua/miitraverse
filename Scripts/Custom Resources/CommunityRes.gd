@@ -30,6 +30,7 @@ class_name CommRes
 @export var olive_community_id: String
 @export var is_recommended: int
 
+#Turns the icon/icon3DS B64 into a TGA
 func ProcessIcon(b64raw):
 	if b64raw == null:
 		return
@@ -43,4 +44,8 @@ func ProcessIcon(b64raw):
 #This takes all the user-visible data and dumps it in a big string file, so that the Search func
 #can look through it when searching
 func PlainTextDump():
+	pass
+
+#Loads community from a raw JSON representation of the community
+func CommRes(json:Dictionary):
 	pass

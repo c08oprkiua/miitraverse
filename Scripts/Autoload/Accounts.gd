@@ -30,6 +30,7 @@ func ThreadBusyCheck():
 		return true
 
 func AccServWiiU():
+	return
 	print("Starting account server connection chain; connecting to domain...")
 	AccSer.connect_to_host(CurrentAccSer)
 	AccSer.poll()
@@ -57,6 +58,7 @@ func ServerConnectLoop(timer_seconds: float) -> bool:
 	self.add_child(quicktimer)
 	print(quicktimer.paused)
 	print(quicktimer.wait_time)
+	AccSer.poll()
 	while not AccSer.get_status() == HTTPClient.STATUS_CONNECTED:
 		if quicktimer.is_stopped():
 			quicktimer.call_deferred("start")

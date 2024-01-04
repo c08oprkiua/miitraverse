@@ -16,6 +16,7 @@ class_name PostRes
 @export var country_id: int
 
 @export_group("Post Data")
+@export var app_data: String
 @export var screen_name: String
 @export var body: String #Actual "text" of the post
 @export var created_at: String
@@ -28,7 +29,6 @@ class_name PostRes
 @export var is_community_private_autopost: int
 
 @export_group("Meta Data")
-@export var app_data: String
 @export var is_app_jumpable: bool
 @export var verified: bool
 @export var message_to_pid: String

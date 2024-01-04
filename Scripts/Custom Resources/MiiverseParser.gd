@@ -2,9 +2,10 @@ extends XMLParser
 class_name MiiverseParser
 
 var triggertoggle:bool = false
-var itname: String
-var information: String
+var key: String
+var value: String
 var dataArray: Array[Dictionary]
+var depthref: int = 0 #A reference to how nested we are in the dataArray
 
 #TriggerNode is the node parent of the child data you want out of the XML, such as `community`
 # or `post` from a Miiverse XML
@@ -23,22 +24,22 @@ func ConvertXML(raw: PackedByteArray, TriggerNode: StringName):
 					stringtionary.clear()
 					triggertoggle = true
 				else:
-					itname = nodename
+					key = nodename
 					if is_empty():
 						print("is null")
 			XMLParser.NODE_ELEMENT_END:
 				if triggertoggle:
 					#I feel like something was gonna go here but idr what
-					stringtionary[itname] = information
+					stringtionary[key] = value
 				if get_node_name() == TriggerNode:
 					var sanitycheck: Dictionary = stringtionary.duplicate(true)
 					dataArray.append(sanitycheck)
 					triggertoggle = false
 			XMLParser.NODE_TEXT:
 				if is_empty():
-					information = ""
+					value = ""
 				else:
-					information = get_node_data()
+					value = get_node_data()
 			XMLParser.NODE_COMMENT:
 				pass
 			XMLParser.NODE_CDATA:

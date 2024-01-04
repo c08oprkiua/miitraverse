@@ -10,4 +10,3 @@ class_name TokenRes
 @export var access_level: int
 @export var title_id: int
 @export var expire_time: int
-
