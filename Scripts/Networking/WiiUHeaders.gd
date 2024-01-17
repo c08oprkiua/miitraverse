@@ -2,7 +2,7 @@ extends RefCounted
 class_name WiiUHeaders
 
 @export_group("Universal")
-@export var PlatformID:ParPacDict.Platform_ID = ParPacDict.Platform_ID.WiiU
+@export var PlatformID:OliveRes.Platform_ID = OliveRes.Platform_ID.WiiU
 @export var DeviceType: int = 2
 @export var DeviceID: int
 @export var SerialNumber: String
@@ -47,7 +47,7 @@ func UniHeaderBuilder(Region: int):
 	#Put value-setting bs here
 	
 	#This is the loop that creates the actual PackedStringSrray
-	var returned: PackedStringArray
+	var returned:PackedStringArray
 	var tempstring:String
 	for values in universalheaders:
 		var keyvalue:String

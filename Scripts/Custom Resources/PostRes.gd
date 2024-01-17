@@ -1,4 +1,4 @@
-extends Resource
+extends OliveRes
 class_name PostRes
 
 #Heavily based on 
@@ -9,7 +9,7 @@ class_name PostRes
 @export var id: String #This is permanent; it cannot be overwirrten by other posts
 @export var title_id: String
 @export var pid: int
-@export var platform_id: int
+@export var platform_id: Platform_ID
 @export var region_id: int
 @export var language_id: int
 @export var community_id: String
@@ -26,7 +26,7 @@ class_name PostRes
 @export var yeahs: int
 @export var reply_count: int
 @export var is_autopost: int
-@export var is_community_private_autopost: int
+@export var is_community_private_autopost: int #bool?
 
 @export_group("Meta Data")
 @export var is_app_jumpable: bool
@@ -37,16 +37,12 @@ class_name PostRes
 @export var number:int #idk what this does
 
 @export_group("Topic Tag Data")
-@export var topic_tag: Dictionary
-#These are the values in the dictionary
 @export var topic_tag_name: String
 @export var topic_tag_title_id: String
 
 @export_group("Painting Data")
-@export var painting: Dictionary
-#These are the values in the dictionary
 @export var painting_format: String
-@export var painting_content: String #Tfw Base64
+@export var painting_content: String #Base64
 @export var painting_size: int
 @export var painting_url: String
 

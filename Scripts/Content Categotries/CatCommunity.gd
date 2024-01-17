@@ -7,7 +7,7 @@ func _ready():
 func ActivateConnection():
 	if URL.is_empty():
 		return
-	
+
 #	Network.connect("Done", ProcessReadData, 4)
 #	Satellite.emit_signal("NetFetch", ContentName)
 

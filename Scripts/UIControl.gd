@@ -1,14 +1,13 @@
 extends Control
  
 var currenttab: StringName
-@onready var homebutton = $"ButtonBar/Home"
-@onready var homecontent = $"UIMargin/MainUI/SpacedContent/HomeList"
+@onready var homebutton:Button = $"ButtonBar/Home"
+@onready var homecontent:CatBoxContainer = $"UIMargin/MainUI/SpacedContent/HomeList"
 
 func _ready():
 	Satellite.connect("SwitchTabs", SwitchTabs)
 	Satellite.connect("NewPopUp", MakePopupWindow)
-	Accounts.WiiUConnect(0)
-	#API.ConnectionManager(0)
+	API.ConnectionManager(0)
 	homebutton.set_pressed(true)
 
 #This is a special function that sets the tab back to Home if a tab is unselected 

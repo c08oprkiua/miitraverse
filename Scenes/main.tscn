@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://begbmh8hmuiic" path="res://Assets/DMs.svg" id="15_2qmdm"]
 [ext_resource type="Texture2D" uid="uid://bfh6u2i4xorl5" path="res://Assets/Notifications.svg" id="16_y1hec"]
 [ext_resource type="Texture2D" uid="uid://ciilsbv5mr1xv" path="res://Assets/plainupnp.svg" id="19_jq22y"]
-[ext_resource type="Texture2D" uid="uid://cvvbv6elvyxho" path="res://Assets/iconplaceholder.png" id="21_mcqpu"]
+[ext_resource type="Texture2D" uid="uid://dxbw7ypmk50en" path="res://Assets/newbg2.svg" id="21_i7tj5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hbps1"]
 
@@ -243,7 +243,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-texture = ExtResource("21_mcqpu")
+texture = ExtResource("21_i7tj5")
 stretch_mode = 1
 
 [connection signal="toggled" from="Topbar/Search" to="." method="_on_search_toggled"]

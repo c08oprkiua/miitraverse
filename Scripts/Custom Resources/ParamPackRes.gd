@@ -11,7 +11,7 @@ class_name ParamPackRes
 		return title_id
 
 @export var access_key: int = 0 #No key
-@export var platform_id:ParPacDict.Platform_ID = ParPacDict.Platform_ID.WiiU
+@export var platform_id:ResEnums.Platform_ID = ResEnums.Platform_ID.WiiU
 @export var region_id: int 
 @export var language_id: int
 @export var country_id: int

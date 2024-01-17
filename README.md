@@ -35,7 +35,7 @@ Additionally, the following will be useable in the future with the app, but are 
 - [ ] Server authentication (service tokens) using account server(s);
   - [ ]  3DS-accurate requests
   - [ ]  Wii U-Accurate requests
-- [ ] The `param-pack` needs to be completed to properly reflect the locale of the device and/or user account.
+- [ ] The `param-pack` locale and/or user account autodetect.
 - [ ] XML data processor (untested)
 - [ ] Apps for 3DS and Wii U that dump [relevant console information](https://github.com/kinnay/NintendoClients/wiki/Account-Server) for use with this app
 
@@ -43,6 +43,8 @@ Additionally, the following will be useable in the future with the app, but are 
 - [x] Multiple registered/registerable account servers (ie. Pretendo Network, Nintendo Network, etc.)
 - [ ] Downloading images (paintings, screenshots, and Mii icons) in various formats
 - [ ] Posting
+  - [ ] Drawing creation UI
+  - [ ] Text posting UI
 - [ ] Custom stamps
 - [ ] Easy cross-posting via an in-app post clipboard
 - [ ] Localized color palette swapping on drawings

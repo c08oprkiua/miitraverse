@@ -1,7 +1,14 @@
-extends Resource
+extends OliveRes
 class_name CommRes
 
 #Based on https://github.com/PretendoNetwork/juxtaposition-ui/blob/main/src/models/communities.js
+
+enum community_type {
+	Main,
+	Sub,
+	Announcement,
+	Private
+}
 
 @export_group("API Data")
 @export var app_data: String
@@ -10,14 +17,14 @@ class_name CommRes
 @export var icon: String
 @export var icon_3ds: String
 @export var pid: int
-@export var is_user_community: String
+@export var is_user_community: bool
 
 #these might just be extra bits that Juxt specifically returns
 @export_group("Extras")
-@export var platform_id: int
+@export var platform_id: ResEnums.Platform_ID
 @export var open: bool
 @export var allows_comments: bool
-@export var type: int
+@export var type:community_type
 @export var parent: String
 @export var admins: Array[int] #?
 @export var created_at: String #Date in js
@@ -31,13 +38,13 @@ class_name CommRes
 @export var is_recommended: int
 
 #Turns the icon/icon3DS B64 into a TGA
-func ProcessIcon(b64raw):
-	if b64raw == null:
+func ProcessIcon(b64raw:String):
+	if b64raw == "":
 		return
-	var de64d = Marshalls.base64_to_raw(b64raw)
+	var de64d:PackedByteArray = Marshalls.base64_to_raw(b64raw)
 	#This max is just gonna be a ridiculously high number cause idk what the
-	#actual max size of a painting is tbh
-	var de64d2 = de64d.decompress_dynamic(10000000, 3)
+	#actual max size of the icon is
+	var de64d2:PackedByteArray = de64d.decompress_dynamic(10000000, 3)
 	var painting = Image.new().load_tga_from_buffer(de64d2)
 	return ImageTexture.create_from_image(painting)
 
@@ -46,6 +53,32 @@ func ProcessIcon(b64raw):
 func PlainTextDump():
 	pass
 
-#Loads community from a raw JSON representation of the community
-func CommRes(json:Dictionary):
-	pass
+#Constructs a CommRes from a raw XML representation of the community,
+#Which is cut from the overall XML response with another function
+func CommRes(rawxml:PackedByteArray):
+	var xml:XMLParser = XMLParser.new()
+	xml.open_buffer(rawxml)
+	var nodetype:XMLParser.NodeType
+	var nodename:StringName
+	var nodevalue:String
+	var writeval
+	while xml.read() != ERR_FILE_EOF:
+		nodetype = xml.get_node_type()
+		match nodetype:
+			XMLParser.NODE_NONE:
+				print("XML node didn't load properly")
+			XMLParser.NODE_ELEMENT:
+				nodename = xml.get_node_name()
+			XMLParser.NODE_ELEMENT_END:
+				if get(nodename) == 0:
+					match typeof(get(nodename)):
+						TYPE_INT:
+							set(nodename, nodevalue.to_int())
+						TYPE_BOOL:
+							set(nodename, bool(nodevalue.to_int()))
+						TYPE_STRING:
+							set(nodename, nodevalue)
+				else:
+					print("Value ", nodename ," in XML is not found in CommRes class")
+			XMLParser.NODE_TEXT:
+				nodevalue = xml.get_node_data()

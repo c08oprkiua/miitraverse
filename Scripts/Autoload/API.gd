@@ -2,8 +2,8 @@ extends Node
 
 #Dev notes: Mid transition to new, simplified function system,
 
-var API = HTTPClient.new()
-var thread = Thread.new()
+var API:HTTPClient = HTTPClient.new()
+var thread:Thread = Thread.new()
 
 var OlvAPI:OliveClient = OliveClient.new()
 
@@ -37,7 +37,6 @@ func FetchManager(page, filename):
 	print(page, filename)
 	if ThreadBusyCheck():
 		pass
-		#thread.start(APIPageRequest.bind(page, filename))
 
 func ConnectionManager(input):
 	if not input is int:
@@ -49,11 +48,14 @@ func ConnectionManager(input):
 		print("Swap API; ", input)
 		print(CurrentAPIHost)
 		if ThreadBusyCheck():
-			pass
-			#thread.start(InitialAPIConnect)
+			OlvAPI.domain = CurrentAPIHost
+			if thread.is_started():
+				print("API: thread is started")
+				return
+			thread.start(OlvAPI.connect_to_api)
 	#Cause if its a match, why reconnect to the same URL?
 
-func ThreadBusyCheck():
+func ThreadBusyCheck() -> bool:
 	if thread.is_alive():
 		print("API: thread is busy")
 		return false

@@ -33,6 +33,7 @@ Verse/Region=1
 
 config/name="MiiTraverse"
 config/description="Multi-revival Miiverse frontend for mobile devices."
+config/tags=PackedStringArray("3ds", "miis", "wii_u")
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/low_processor_mode=true
@@ -44,7 +45,6 @@ config/icon="res://Assets/TM_WiiU_Miiverse.png"
 
 [autoload]
 
-Accounts="*res://Scripts/Autoload/Accounts.gd"
 API="*res://Scripts/Autoload/API.gd"
 Satellite="*res://Scripts/Autoload/Satellite.gd"
 DaBa="*res://Scripts/Autoload/database.gd"

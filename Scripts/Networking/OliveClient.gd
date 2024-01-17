@@ -9,31 +9,44 @@ var service_token:String
 const pack_temp:String = "x-nintendo-parampack: {parampack}"
 const service_token_temp:String = "x-nintendo-servicetoken: {token}"
 
+class queries:
+	var json:bool = false
+	
+
 #This is static so it can be used even for non OliveClient purposes
 static func assemble_headers(parpak:ParamPackRes, service_token:String) -> PackedStringArray:
-	var new_headers:PackedStringArray
+	var new_headers:PackedStringArray = []
 	new_headers.append(pack_temp.format({"parampack": parpak.assemble()}))
 	new_headers.append(service_token_temp.format({"token": service_token}))
 	return new_headers
 
 func internal_connect(url:String, chainload:Callable = func(): return):
+	print("Good Morning Miiverse! Today we're connecting to ", url, " and then calling ", chainload)
 	blocking_mode_enabled = true
 	connect_to_host(url)
 	poll()
 	var accumulate:int = 0
-	while get_status() == HTTPClient.STATUS_CONNECTING | HTTPClient.STATUS_RESOLVING:
+	print("Our current connection status is... ", get_status())
+	while get_status() == HTTPClient.STATUS_RESOLVING || HTTPClient.STATUS_CONNECTING:
 		accumulate = accumulate + 1
 		poll()
+		if get_status() == HTTPClient.STATUS_CONNECTED:
+			break
 		print("Connecting... ", accumulate)
 		OS.delay_msec(100)
+		if accumulate > 100:
+			print("Accumulate limit of 100 is reached")
+			break
 	if get_status() == HTTPClient.STATUS_CONNECTED:
 		print("Connected!")
 		#This chainload is my solution to an apparent race condition I was running into with 
 		#calling internal_connect in another function, where it would not complete before the
 		#rest of the calling function ran, no matter what I tried with mutexes, awaits, etc.
 		chainload.call()
+		return
 	elif get_status() == HTTPClient.STATUS_CANT_CONNECT | HTTPClient.STATUS_CANT_RESOLVE:
 		print("Couldn't connect or resolve")
+	return
 
 func internal_get(endpoint:String) -> PackedByteArray:
 	#Occasionally, the server will time out, which causes a connection error
@@ -42,7 +55,24 @@ func internal_get(endpoint:String) -> PackedByteArray:
 		print("Connection error, reconnecting...")
 		internal_connect(domain)
 	request(HTTPClient.METHOD_GET, endpoint, OliveClient.assemble_headers(pack, service_token))
-	var response:PackedByteArray
+	var response:PackedByteArray = []
+	poll()
+	while get_status() == HTTPClient.STATUS_REQUESTING:
+		poll()
+	while get_status() == HTTPClient.STATUS_BODY:
+		response.append_array(read_response_body_chunk())
+		print("Recieving response...")
+	return response
+
+func internal_post(endpoint: String, send_data:String):
+	#Occasionally, the server will time out, which causes a connection error
+	if get_status() == HTTPClient.STATUS_CONNECTION_ERROR:
+		IP.clear_cache(domain)
+		print("Connection error, reconnecting...")
+		internal_connect(domain)
+		return
+	request(HTTPClient.METHOD_POST, endpoint, OliveClient.assemble_headers(pack, service_token), send_data)
+	var response:PackedByteArray = []
 	poll()
 	while get_status() == HTTPClient.STATUS_REQUESTING:
 		poll()
@@ -53,9 +83,11 @@ func internal_get(endpoint:String) -> PackedByteArray:
 
 #Bug: first call does nothing, second goes through then freezes at BROKEN BIT
 func connect_to_domain(url: String = domain):
+	print("Connecting to Domain")
 	internal_connect(url, get_base_endpoint)
 
 func connect_to_api(url: String = domain):
+	print("Connecting to API")
 	internal_connect(url)
 
 func get_base_endpoint():
@@ -102,3 +134,6 @@ func get_friend_messages():
 
 func get_topics():
 	var response:PackedByteArray = internal_get("/v1/topics")
+
+func post_to_community(community_id: String, post:PostRes):
+	pass
