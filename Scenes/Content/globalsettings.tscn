@@ -54,12 +54,14 @@ alignment = 2
 script = ExtResource("3_hmlmj")
 
 [node name="Certs" type="Label" parent="."]
+visible = false
 layout_mode = 2
 text = "Certificates and Console Information"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="3DSCert" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -73,6 +75,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="WiiUCert" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="WiiUCert"]
@@ -86,6 +89,7 @@ size_flags_horizontal = 3
 
 [node name="UI" type="Label" parent="."]
 layout_mode = 2
+size_flags_vertical = 6
 text = "User Interface Customization"
 horizontal_alignment = 1
 autowrap_mode = 2

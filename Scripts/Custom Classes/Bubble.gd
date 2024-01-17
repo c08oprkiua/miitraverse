@@ -13,6 +13,3 @@ func _ready():
 
 func NewBubble():
 	add_theme_stylebox_override("NewBubble", DaBa.MountedBubble)
-
-func selfdelete():
-	self.queue_free()

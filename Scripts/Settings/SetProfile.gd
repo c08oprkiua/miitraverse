@@ -2,7 +2,9 @@ extends VBoxContainer
 
 signal ProfSet
 
-var tempcolor:Color
+var temp_bubble_tint:Color
+var temp_painting_w: Color
+var temp_painting_b: Color
 var profres: ProfileRes = ProfileRes.new()
 
 var profnum: int:
@@ -22,11 +24,15 @@ const nodeindex: Dictionary = {
 	"OfflineCache": "Cache",
 	"ShowSpoilers": "Spoilers",
 	"UseUniqueTint": "UseTint",
+	"RecolorPaintings": "PaintingColors",
 	
-	"Tint": "DefaultTint/Picker",
+	"BubbleTint": "DefaultTint/BubbleTint",
+	"PaintTintW": "PaintingTintW/PaintTintW",
+	"PaintTintB": "PaintingTintB/PaintTintB",
 	
 	"url": "APIURL/API",
 	"name": "ProfileName/ProfName",
+	"ServiceToken": "Login/SerTok/ServiceToken",
 	"Username": "Login/Username/Username",
 	"Password": "Login/Password/Password",
 	"AccountServWiiU": "More/AccountWiiU/AccWiiU",
@@ -95,6 +101,9 @@ func _on_spoilers_toggled(button_pressed):
 func _on_use_tint_toggled(button_pressed):
 	ProfileSet("UseUniqueTint", button_pressed)
 
+func _on_painting_colors_toggled(toggled_on):
+	ProfileSet("RecolorPaintings", toggled_on)
+
 #Indexes
 func _on_client_spoof_item_selected(index):
 	ProfileSet("Mimicked_Device", index)
@@ -104,10 +113,22 @@ func _on_region_opt_item_selected(index):
 
 #Color
 func _on_picker_color_changed(color):
-	tempcolor = color
+	temp_bubble_tint = color
 
 func _on_picker_popup_closed():
-	ProfileSet("Tint", tempcolor)
+	ProfileSet("BubbleTint", temp_bubble_tint)
+
+func _on_paint_tint_b_color_changed(color):
+	temp_painting_b = color
+
+func _on_paint_tint_b_popup_closed():
+	ProfileSet("PaintTintB", temp_painting_b)
+
+func _on_paint_tint_w_color_changed(color):
+	temp_painting_w = color
+
+func _on_paint_tint_w_popup_closed():
+	ProfileSet("PaintTintW", temp_painting_w)
 
 #Text
 func _on_api_text_changed(new_text):
@@ -117,6 +138,9 @@ func _on_prof_name_text_changed(new_text):
 	$"BubbleName".text = new_text
 	ProfileSet("name", new_text)
 	Satellite.emit_signal("RefreshNetworks")
+
+func _on_service_token_text_changed(new_text):
+	ProfileSet("ServiceToken", new_text)
 
 func _on_username_text_changed(new_text):
 	ProfileSet("Username", new_text)

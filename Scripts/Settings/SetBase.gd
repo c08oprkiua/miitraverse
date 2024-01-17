@@ -57,7 +57,7 @@ func SetFuncVars(number: int):
 	if DaBa.OverrideTints:
 		mountedcolor = DaBa.Tint
 	elif curprofres.UseUniqueTint:
-		mountedcolor = curprofres.Tint
+		mountedcolor = curprofres.BubbleTint
 	else:
 		mountedcolor = DaBa.Tint
 	BlowBubbles()

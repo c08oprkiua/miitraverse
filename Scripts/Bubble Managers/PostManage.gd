@@ -47,6 +47,7 @@ func _on_community_pressed():
 		print("Scrolling")
 		return
 	print(CommunityInfo.get("name"))
+	#Note: Change to new API backend
 	var posts = ("/v1/commmunities/"+PostID+"/posts")
 	API.MountedEXT = PostID
 	API.FetchManager("Posts", PostID+"posts.xml")

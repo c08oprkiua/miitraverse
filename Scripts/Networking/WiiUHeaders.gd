@@ -61,8 +61,3 @@ func TokenHeaderBuilder(Username: String, Password: String):
 	AccessTokenBody["user_id"] = Username
 	AccessTokenBody["password"] = Password
 	#Insert thing that adds these to the universalheaders
-
-
-func PasswordToHashword(password: String, PID: String):
-	pass
-

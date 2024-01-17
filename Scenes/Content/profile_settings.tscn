@@ -56,7 +56,23 @@ text = "Show login information"
 visible = false
 layout_mode = 2
 
+[node name="SerTok" type="HBoxContainer" parent="Login"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Login/SerTok"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Service Token: "
+
+[node name="ServiceToken" type="LineEdit" parent="Login/SerTok"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "DO NOT SHARE TOKENS"
+alignment = 2
+secret = true
+
 [node name="Username" type="HBoxContainer" parent="Login"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Login/Username"]
@@ -70,6 +86,7 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="Password" type="HBoxContainer" parent="Login"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Login/Password"]
@@ -117,7 +134,50 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Custom UI color: "
 
-[node name="Picker" type="ColorPickerButton" parent="DefaultTint"]
+[node name="BubbleTint" type="ColorPickerButton" parent="DefaultTint"]
+layout_mode = 2
+text = "Default UI color"
+alignment = 0
+
+[node name="ProfileName2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ProfileName2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background image: "
+
+[node name="Button" type="Button" parent="ProfileName2"]
+layout_mode = 2
+text = "(Open file explorer)"
+
+[node name="PaintingColors" type="CheckButton" parent="."]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Painting color overrides:"
+
+[node name="PaintingTintW" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PaintingTintW"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Custom \"white\" color: "
+
+[node name="PaintTintW" type="ColorPickerButton" parent="PaintingTintW"]
+layout_mode = 2
+text = "Default UI color"
+alignment = 0
+
+[node name="PaintingTintB" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PaintingTintB"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Custom \"black\" color: "
+
+[node name="PaintTintB" type="ColorPickerButton" parent="PaintingTintB"]
 layout_mode = 2
 text = "Default UI color"
 alignment = 0
@@ -173,11 +233,13 @@ popup/item_10/text = "Russian"
 popup/item_10/id = 10
 
 [node name="AccountServers" type="Label" parent="More"]
+visible = false
 layout_mode = 2
 text = "Account Servers: "
 horizontal_alignment = 1
 
 [node name="Account3DS" type="HBoxContainer" parent="More"]
+visible = false
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="More/Account3DS"]
@@ -191,6 +253,7 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="AccountWiiU" type="HBoxContainer" parent="More"]
+visible = false
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="More/AccountWiiU"]
@@ -215,12 +278,18 @@ text = "Remove Profile"
 [connection signal="text_changed" from="ProfileName/ProfName" to="." method="_on_prof_name_text_changed"]
 [connection signal="text_changed" from="APIURL/API" to="." method="_on_api_text_changed"]
 [connection signal="toggled" from="ShowLogin" to="." method="_on_show_login_toggled"]
+[connection signal="text_changed" from="Login/SerTok/ServiceToken" to="." method="_on_service_token_text_changed"]
 [connection signal="text_changed" from="Login/Username/Username" to="." method="_on_username_text_changed"]
 [connection signal="text_changed" from="Login/Password/Password" to="." method="_on_password_text_changed"]
 [connection signal="item_selected" from="SpoofClients/ClientSpoof" to="." method="_on_client_spoof_item_selected"]
 [connection signal="toggled" from="Spoilers" to="." method="_on_spoilers_toggled"]
-[connection signal="color_changed" from="DefaultTint/Picker" to="." method="_on_picker_color_changed"]
-[connection signal="popup_closed" from="DefaultTint/Picker" to="." method="_on_picker_popup_closed"]
+[connection signal="color_changed" from="DefaultTint/BubbleTint" to="." method="_on_picker_color_changed"]
+[connection signal="popup_closed" from="DefaultTint/BubbleTint" to="." method="_on_picker_popup_closed"]
+[connection signal="toggled" from="PaintingColors" to="." method="_on_painting_colors_toggled"]
+[connection signal="color_changed" from="PaintingTintW/PaintTintW" to="." method="_on_paint_tint_w_color_changed"]
+[connection signal="popup_closed" from="PaintingTintW/PaintTintW" to="." method="_on_paint_tint_w_popup_closed"]
+[connection signal="color_changed" from="PaintingTintB/PaintTintB" to="." method="_on_paint_tint_b_color_changed"]
+[connection signal="popup_closed" from="PaintingTintB/PaintTintB" to="." method="_on_paint_tint_b_popup_closed"]
 [connection signal="toggled" from="UseTint" to="." method="_on_use_tint_toggled"]
 [connection signal="toggled" from="ShowMore" to="." method="_on_show_more_toggled"]
 [connection signal="item_selected" from="More/Region/RegionOpt" to="." method="_on_region_opt_item_selected"]

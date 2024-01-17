@@ -18,7 +18,6 @@ Globals/OverrideTints=false
 Verse/Name="Juxtaposition"
 Verse/URL=&"api.olv.pretendo.cc"
 Verse/OfflineCache=false
-Verse/Tint=Color(0.105882, 0.121569, 0.231373, 1)
 Verse/UseUniqueTint=true
 Verse/Mimicked_Device=1
 Verse/AccountServWiiU=&"accounts.pretendo.cc"
@@ -28,6 +27,10 @@ Verse/Password=""
 Verse/PID=""
 Verse/ShowSpoilers=false
 Verse/Region=1
+Verse/BubbleTint=Color(0.105882, 0.121569, 0.231373, 1)
+Verse/RecolorPaintings=false
+Verse/PaintTintW=Color(1, 1, 1, 1)
+Verse/PaintTintB=Color(0, 0, 0, 1)
 
 [application]
 
