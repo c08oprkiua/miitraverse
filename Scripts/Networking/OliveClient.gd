@@ -14,10 +14,10 @@ class queries:
 	
 
 #This is static so it can be used even for non OliveClient purposes
-static func assemble_headers(parpak:ParamPackRes, service_token:String) -> PackedStringArray:
+static func assemble_headers(parpak:ParamPackRes, servicetoken:String) -> PackedStringArray:
 	var new_headers:PackedStringArray = []
 	new_headers.append(pack_temp.format({"parampack": parpak.assemble()}))
-	new_headers.append(service_token_temp.format({"token": service_token}))
+	new_headers.append(service_token_temp.format({"token": servicetoken}))
 	return new_headers
 
 func internal_connect(url:String, chainload:Callable = func(): return):
@@ -48,38 +48,29 @@ func internal_connect(url:String, chainload:Callable = func(): return):
 		print("Couldn't connect or resolve")
 	return
 
-func internal_get(endpoint:String) -> PackedByteArray:
-	#Occasionally, the server will time out, which causes a connection error
+func internal_request(mode:HTTPClient.Method,endpoint: String, send_data:String= "") -> PackedByteArray:
+	poll()
+	#Occasionally, the connection will time out, which causes a connection error
 	if get_status() == HTTPClient.STATUS_CONNECTION_ERROR:
 		IP.clear_cache(domain)
 		print("Connection error, reconnecting...")
 		internal_connect(domain)
-	request(HTTPClient.METHOD_GET, endpoint, OliveClient.assemble_headers(pack, service_token))
 	var response:PackedByteArray = []
+	match mode:
+		METHOD_GET:
+				request(HTTPClient.METHOD_GET, endpoint, OliveClient.assemble_headers(pack, service_token))
+		METHOD_POST:
+			request(HTTPClient.METHOD_POST, endpoint, OliveClient.assemble_headers(pack, service_token), send_data)
 	poll()
 	while get_status() == HTTPClient.STATUS_REQUESTING:
 		poll()
 	while get_status() == HTTPClient.STATUS_BODY:
 		response.append_array(read_response_body_chunk())
 		print("Recieving response...")
+	print("Got body")
 	return response
 
-func internal_post(endpoint: String, send_data:String):
-	#Occasionally, the server will time out, which causes a connection error
-	if get_status() == HTTPClient.STATUS_CONNECTION_ERROR:
-		IP.clear_cache(domain)
-		print("Connection error, reconnecting...")
-		internal_connect(domain)
-		return
-	request(HTTPClient.METHOD_POST, endpoint, OliveClient.assemble_headers(pack, service_token), send_data)
-	var response:PackedByteArray = []
-	poll()
-	while get_status() == HTTPClient.STATUS_REQUESTING:
-		poll()
-	while get_status() == HTTPClient.STATUS_BODY:
-		response.append_array(read_response_body_chunk())
-		print("Recieving response...")
-	return response
+
 
 #Bug: first call does nothing, second goes through then freezes at BROKEN BIT
 func connect_to_domain(url: String = domain):
@@ -91,7 +82,7 @@ func connect_to_api(url: String = domain):
 	internal_connect(url)
 
 func get_base_endpoint():
-	var response: PackedByteArray = internal_get("/v1/endpoint")
+	var response: PackedByteArray = internal_request(METHOD_GET,"/v1/endpoint")
 	var accum:int = 0
 	FileAccess.open("res://discdump.txt",FileAccess.WRITE_READ).store_buffer(response)
 	var responsexml:XMLParser = XMLParser.new()
@@ -108,32 +99,30 @@ func get_base_endpoint():
 				var apihost: String = responsexml.get_node_data()
 				print(apihost)
 
-func get_communities():
-	var response: PackedByteArray = internal_get("/v1/communities")
-	print("Got body")
-	if true:
-		var caching = FileAccess.open("user://newcommfetch.xml", FileAccess.WRITE_READ)
-		caching.store_buffer(response)
+func get_communities() -> Array[CommRes]:
+	var raw:PackedByteArray = internal_request(METHOD_GET,"/v1/communities")
+	var communities:Array[CommRes] = []
+	return communities
 
-func get_community(community_id:String):
-	request(HTTPClient.METHOD_GET, "v1/communities/"+community_id+"/posts", OliveClient.assemble_headers(pack, service_token))
+func get_community(community_id:String) -> CommRes:
+	internal_request(METHOD_GET,"v1/communities/"+community_id+"/posts")
+	return CommRes.new()
 
 func get_community_from_titleid(title_id:String):
 	pack.title_id = title_id
-	request(HTTPClient.METHOD_GET, "v1/communities/0/posts", OliveClient.assemble_headers(pack, service_token))
+	internal_request(METHOD_GET,"v1/communities/0/posts")
 
-#This will be edited to take in a PostRes
 func get_post_from_community(post_id:String):
 	pass
 
-func get_post_from_community_tid(titleid:String):
+func get_post_from_community_tid(titleid:String, postid:String):
 	pass
 
 func get_friend_messages():
-	var response:PackedByteArray = internal_get("/v1/friend_messages")
+	var response:PackedByteArray = internal_request(METHOD_GET,"/v1/friend_messages")
 
 func get_topics():
-	var response:PackedByteArray = internal_get("/v1/topics")
+	var response:PackedByteArray = internal_request(METHOD_GET,"/v1/topics")
 
 func post_to_community(community_id: String, post:PostRes):
 	pass

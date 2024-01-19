@@ -48,10 +48,3 @@ func ConvertXML(raw: PackedByteArray, TriggerNode: StringName):
 				pass
 	print("XML processed")
 	return dataArray
-
-func SplitBases(raw: PackedByteArray, GroupName:String):
-	open_buffer(raw)
-	var checkdata:NodeType
-	while read() != ERR_FILE_EOF:
-		checkdata = get_node_type()
-	pass

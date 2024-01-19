@@ -6,6 +6,9 @@ extends CatBoxContainer
 
 var savedsettings: GlobalSettingRes
 
+static var base_pack:PackedScene = preload("res://Scenes/Content/globalsettings.tscn") as PackedScene
+static var prof_pack:PackedScene = preload("res://Scenes/Content/profile_settings.tscn") as PackedScene
+
 #var fallbacknet = ProjectSettings.get_setting("MiiTraverse/Globals/Fallback_Network")
 var fallbacknet: StringName = ProjectSettings.get_setting("MiiTraverse/Verse/Name")
 var mountedcolor
@@ -28,9 +31,11 @@ func _ready():
 func ProfileArrayLoad():
 	for childs in get_children():
 		childs.queue_free()
-	add_child(load("res://Scenes/Bubbles/GlobalSettingsBubble.tscn").instantiate())
+	var bub:ContentBubble = ContentBubble.new(base_pack)
+	add_child(bub)
 	for profiles in DaBa.ProfileArray:
-		add_child(Bubble.instantiate())
+		bub = ContentBubble.new(prof_pack)
+		add_child(bub)
 		Satellite.emit_signal("LoadProfile", profiles)
 	Satellite.emit_signal("RefreshNetworks")
 
@@ -60,11 +65,3 @@ func SetFuncVars(number: int):
 		mountedcolor = curprofres.BubbleTint
 	else:
 		mountedcolor = DaBa.Tint
-	BlowBubbles()
-
-#Maybe move this to DaBa?
-func BlowBubbles():
-	var bubbletex = load("res://TRESfiles/Bubbles/bubble.stylebox")
-	bubbletex.bg_color = mountedcolor
-	DaBa.MountedBubble = bubbletex
-	Satellite.emit_signal("NewBubble")

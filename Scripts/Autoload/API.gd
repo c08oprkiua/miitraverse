@@ -13,16 +13,11 @@ var OlvAPI:OliveClient = OliveClient.new()
 var CurrentAPIHost: StringName
 var CurrentURL:String
 
-const endpoint:String = "/v1/endpoint"
-
-var headers:Array = []
-var response: PackedByteArray
-
 var isfetch: bool
-signal Done
+signal thread_is_free
 
 #Unverified endpoints
-var asjson:String = "?json=1" #NoNameVerse specific: add to the end of any subURL to get the response as a JSON
+var asjson:String = "?json=1"
 var icon:String = "/img/icons/{community_id}.jpg" #the icons
 var userpage:String = "users/show?pid=[{user_id}]"
 var mypage:String = "users/me"
@@ -31,42 +26,42 @@ var newcontent:String = "/communities/{community_id}/new"
 func _ready():
 	Satellite.connect("SwapNetworks", ConnectionManager)
 	Satellite.connect("NetFetch", FetchManager)
-	connect("Done", WrapUpThread)
 
-func FetchManager(page, filename):
-	print(page, filename)
+func FetchManager(page:StringName, args:Array= []):
+	print("page fetch requested; calling ", page, " with args", args)
 	if ThreadBusyCheck():
-		pass
+		thread.start(OlvAPI.callv(page, args))
 
-func ConnectionManager(input):
-	if not input is int:
-		return
+func ConnectionManager(input: int):
 	var ProfRes: ProfileRes = DaBa.ProfileCheck(input)
 	var APIURL: StringName = ProfRes.url
-	if not CurrentAPIHost == APIURL:
-		CurrentAPIHost = APIURL
-		print("Swap API; ", input)
-		print(CurrentAPIHost)
-		if ThreadBusyCheck():
-			OlvAPI.domain = CurrentAPIHost
-			if thread.is_started():
-				print("API: thread is started")
-				return
-			thread.start(OlvAPI.connect_to_api)
+	OlvAPI.service_token = ProfRes.ServiceToken
 	#Cause if its a match, why reconnect to the same URL?
+	if CurrentAPIHost != APIURL:
+		CurrentAPIHost = APIURL
+		OlvAPI.domain = CurrentAPIHost
+		print("Swap API; profile ", input, ", going to ", CurrentAPIHost)
+		if ThreadBusyCheck():
+			thread.start(OlvAPI.connect_to_api)
+		else:
+			connect("thread_is_free", ConnectionManager.bind(input), CONNECT_ONE_SHOT)
 
 func ThreadBusyCheck() -> bool:
 	if thread.is_alive():
-		print("API: thread is busy")
+		print("API: thread is still working")
+		return false
+	elif thread.is_started():
+		print("Thread has been started")
 		return false
 	else: 
+		emit_signal("thread_is_free")
 		print("API: Proceeding to thread")
 		return true
 
-func WrapUpThread():
-	if thread.is_alive():
-		thread.wait_to_finish()
-	print("Thread wrapped up")
-
-
-#XHRpdGxlX2lkXDE0MDczNzUxNjg3ODM3MTRcYWNjZXNzX2tleVwwXHBsYXRmb3JtX2lkXDFccmVn aW9uX2lkXDJcbGFuZ3VhZ2VfaWRcMVxjb3VudHJ5X2lkXDQ5XGFyZWFfaWRcMTFcbmV0d29ya19y ZXN0cmljdGlvblwwXGZyaWVuZF9yZXN0cmljdGlvblwwXHJhdGluZ19yZXN0cmljdGlvblwxN1xy YXRpbmdfb3JnYW5pemF0aW9uXDFcdHJhbnNmZXJhYmxlX2lkXDEwMTYxMzgxNTYxMTY1MTc1NDI5 XHR6X25hbWVcQW1lcmljYS9OZXdfWW9ya1x1dGNfb2Zmc2V0XC0xODAwMFw=
+func WrapUpThread()-> Variant:
+	if ThreadBusyCheck():
+		print("Thread wrapped up")
+		return thread.wait_to_finish()
+	else:
+		print("Thread is still alive")
+		return null

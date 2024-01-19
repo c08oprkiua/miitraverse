@@ -183,3 +183,9 @@ func _on_show_login_toggled(button_pressed):
 		$"Login".show()
 	else:
 		$"Login".hide()
+
+
+func _on_custom_bg_pressed():
+	var fil_exp: PackedScene = load("res://Scenes/background_dialog.tscn") as PackedScene
+	
+	Satellite.emit_signal("NewPopUp", fil_exp)

@@ -47,10 +47,8 @@ func _on_community_pressed():
 		print("Scrolling")
 		return
 	print(CommunityInfo.get("name"))
-	#Note: Change to new API backend
-	var posts = ("/v1/commmunities/"+PostID+"/posts")
-	API.MountedEXT = PostID
-	API.FetchManager("Posts", PostID+"posts.xml")
+	#Note: Placeholder for new API
+	OliveClient.new().get_post_from_community(PostID)
 
 #func IsThisMyIcon():
 #	BrewInfo.changeicon(CommID)
@@ -88,4 +86,5 @@ func _on_dl_painting_pressed():
 	pass # Replace with function body.
 
 func _on_replies_toggled(button_pressed):
+	print(button_pressed)
 	pass # Replace with function body.

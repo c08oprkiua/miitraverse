@@ -139,15 +139,15 @@ layout_mode = 2
 text = "Default UI color"
 alignment = 0
 
-[node name="ProfileName2" type="HBoxContainer" parent="."]
+[node name="CustomBG" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ProfileName2"]
+[node name="Label" type="Label" parent="CustomBG"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Background image: "
 
-[node name="Button" type="Button" parent="ProfileName2"]
+[node name="CustomBG" type="Button" parent="CustomBG"]
 layout_mode = 2
 text = "(Open file explorer)"
 
@@ -285,6 +285,7 @@ text = "Remove Profile"
 [connection signal="toggled" from="Spoilers" to="." method="_on_spoilers_toggled"]
 [connection signal="color_changed" from="DefaultTint/BubbleTint" to="." method="_on_picker_color_changed"]
 [connection signal="popup_closed" from="DefaultTint/BubbleTint" to="." method="_on_picker_popup_closed"]
+[connection signal="pressed" from="CustomBG/CustomBG" to="." method="_on_custom_bg_pressed"]
 [connection signal="toggled" from="PaintingColors" to="." method="_on_painting_colors_toggled"]
 [connection signal="color_changed" from="PaintingTintW/PaintTintW" to="." method="_on_paint_tint_w_color_changed"]
 [connection signal="popup_closed" from="PaintingTintW/PaintTintW" to="." method="_on_paint_tint_w_popup_closed"]

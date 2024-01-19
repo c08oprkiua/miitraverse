@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cadp0ihgawlfb"]
+
+[ext_resource type="Script" path="res://Scripts/Settings/img_diag.gd" id="1_4vr2a"]
+
+[node name="FileDialog" type="FileDialog"]
+disable_3d = true
+mode = 3
+title = "Choose Image"
+initial_position = 2
+size = Vector2i(831, 159)
+visible = true
+transient = false
+borderless = true
+keep_title_visible = false
+content_scale_mode = 1
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+dialog_autowrap = true
+mode_overrides_title = false
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.jpg")
+script = ExtResource("1_4vr2a")

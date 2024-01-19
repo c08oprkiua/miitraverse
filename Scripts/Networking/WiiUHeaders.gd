@@ -48,7 +48,7 @@ func UniHeaderBuilder(Region: int):
 	
 	#This is the loop that creates the actual PackedStringSrray
 	var returned:PackedStringArray
-	var tempstring:String
+	var tempstring:String = ""
 	for values in universalheaders:
 		var keyvalue:String
 		returned.append(values)

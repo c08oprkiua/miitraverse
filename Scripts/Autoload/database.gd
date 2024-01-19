@@ -13,7 +13,7 @@ var Wii_U_Certificate: String
 var OverrideTints: bool
 var Tint: Color
 
-#This is a pointer to all existing profiles, using their int value to find their folder, and then 
+#This is a reference to all existing profiles, using their int value to find their folder, and then 
 #from there, finding whatever data is needed through their settings.tres file
 var ProfileArray: Array[int] = []
 #This must be a value in the above array
@@ -22,6 +22,10 @@ var CurrentProfile: int
 
 var headersWiiU:WiiUHeaders
 var MiiverseToken: String
+
+func _ready():
+	Satellite.connect("SwapNetworks", SwitchProfiles)
+
 
 func ProfileArrayFiller():
 	for directories in DirAccess.get_directories_at("user://"):
@@ -81,6 +85,27 @@ func ContentCheck(number: int, file: String) -> PackedByteArray:
 		print("Well that's concerning")
 		return PackedByteArray([])
 
+
+func SwitchProfiles(now:int):
+	#Check if cache should be enabled
+	var curprofres: ProfileRes = ProfileCheck(now)
+	var mountedcolor:Color
+	if OfflineCache or curprofres.OfflineCache:
+		UseCache = true
+	else:
+		UseCache = false
+	#Check which UI color should be used. I want to clean this up.
+	if OverrideTints:
+		mountedcolor = Tint
+	elif curprofres.UseUniqueTint:
+		mountedcolor = curprofres.BubbleTint
+	else:
+		mountedcolor = Tint
+	#Switch Bubbles
+	var bubbletex:StyleBox = load("res://TRESfiles/Bubbles/bubble.stylebox") as StyleBox
+	bubbletex.bg_color = mountedcolor
+	ContentBubble.UniversalBubble = bubbletex
+	Satellite.emit_signal("NewBubble")
 
 
 #Legacy code

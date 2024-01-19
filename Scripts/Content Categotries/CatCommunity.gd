@@ -14,3 +14,9 @@ func ActivateConnection():
 #func DeactivateConnection():
 #	if Network.is_connected("Done", ProceedLoadList):
 #		Network.disconnect("Done", ProceedLoadList)
+
+func load_communities():
+	var parser:MiiverseParser = MiiverseParser.new()
+	var response:PackedByteArray = []
+	API.FetchManager("get_communities")
+	parser.ConvertXML(response, "community")

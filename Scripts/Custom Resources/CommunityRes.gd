@@ -61,7 +61,7 @@ func CommRes(rawxml:PackedByteArray):
 	var nodetype:XMLParser.NodeType
 	var nodename:StringName
 	var nodevalue:String
-	var writeval
+	#var writeval
 	while xml.read() != ERR_FILE_EOF:
 		nodetype = xml.get_node_type()
 		match nodetype:

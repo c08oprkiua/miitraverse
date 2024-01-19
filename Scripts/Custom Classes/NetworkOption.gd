@@ -1,13 +1,15 @@
 extends OptionButton
 #This is implemented as a custom class so I can copy-paste it wherever (namely
-#settings) and have it automatically (re)load all the networks options
+# settings) and have it automatically (re)load all the networks options
 class_name NetworkOption
 
-var settings: GlobalSettingRes
+static var settings: GlobalSettingRes
 @export var IsInOptions: bool = false
 
-func _ready():
+static func _static_init():
 	settings = DaBa.SettingsCheck()
+
+func _ready():
 	Satellite.connect("RefreshNetworks", NetworkIndexLoad)
 	if not IsInOptions:
 		connect("item_selected", _on_item_selected)
