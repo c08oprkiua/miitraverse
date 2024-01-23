@@ -31,11 +31,10 @@ func setinfo(key):
 
 func changetext():
 	for meta in ["name", "description", "community_id"]:
-		if CommunityInfo.has(meta):
-			var thing = UILink.get(meta)
-			if thing == null:
-				continue
-			get_node(thing).text = CommunityInfo.get(meta)
+		var thing = UILink.get(meta)
+		if thing == null:
+			continue
+		get_node(thing).text = CommunityInfo.get(meta)
 
 #Icon setting/requesting
 #func updooticon(arg1):
@@ -44,15 +43,13 @@ func changetext():
 #		Satellite.disconnect("Processedicon", updooticon)
 #		Satellite.disconnect("DownloadComplete", IsThisMyIcon)
 
-
-
 func _on_bubble_pressed():
 	if ScrollMode:
 		print("Scrolling")
 		return
 	print(CommunityInfo.get("name"), CommID)
-	API.MountedEXT = CommID
-	API.FetchManager("Posts", "community.xml")
+	#API.MountedEXT = CommID
+	#API.FetchManager("Posts", "community.xml")
 	Satellite.emit_signal("SwitchTabs", "Posts", true)
 
 #func IsThisMyIcon():

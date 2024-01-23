@@ -11,7 +11,7 @@ static var prof_pack:PackedScene = preload("res://Scenes/Content/profile_setting
 
 #var fallbacknet = ProjectSettings.get_setting("MiiTraverse/Globals/Fallback_Network")
 var fallbacknet: StringName = ProjectSettings.get_setting("MiiTraverse/Verse/Name")
-var mountedcolor
+var mountedcolor:Color
 
 func _ready():
 	savedsettings = DaBa.SettingsCheck()
@@ -21,11 +21,7 @@ func _ready():
 	ProfileArrayLoad()
 	Satellite.connect("NewProfile", LoadProfileBubble)
 	DaBa.CurrentProfile = savedsettings.DefaultNetwork #rain check this
-	Satellite.connect("SwapNetworks", SetFuncVars)
-	Satellite.connect("RefreshNetworks", ActiveNow)
-	connect("WhenInactive", ActiveNow)
-	SetFuncVars(savedsettings.DefaultNetwork)
-	Satellite.connect("SwitchTabs", VisibilityToggle)
+	connect("WhenInactive", Satellite.emit_signal.bind("RefreshNetworks"))
 	print("Settings init complete")
 
 func ProfileArrayLoad():
@@ -41,27 +37,6 @@ func ProfileArrayLoad():
 
 func LoadProfileBubble(profval: int):
 	DaBa.ProfileArray.append(profval)
-	add_child(Bubble.instantiate())
+	var bub:ContentBubble = ContentBubble.new(prof_pack)
+	add_child(bub)
 	Satellite.emit_signal("LoadProfile", profval)
-
-#Padding function to call SetFuncVars in instances where an int is not provided
-func ActiveNow():
-	if DaBa.ProfileArray.has(savedsettings.DefaultNetwork):
-		SetFuncVars(savedsettings.DefaultNetwork)
-	else:
-		SetFuncVars(0)
-
-func SetFuncVars(number: int):
-	#Check if cache should be enabled
-	var curprofres: ProfileRes = DaBa.ProfileCheck(number)
-	if DaBa.OfflineCache or curprofres.OfflineCache:
-		DaBa.UseCache = true
-	else:
-		DaBa.UseCache = false
-	#Check which UI color should be used. I want to clean this up.
-	if DaBa.OverrideTints:
-		mountedcolor = DaBa.Tint
-	elif curprofres.UseUniqueTint:
-		mountedcolor = curprofres.BubbleTint
-	else:
-		mountedcolor = DaBa.Tint

@@ -44,7 +44,8 @@ func ConnectionManager(input: int):
 		if ThreadBusyCheck():
 			thread.start(OlvAPI.connect_to_api)
 		else:
-			connect("thread_is_free", ConnectionManager.bind(input), CONNECT_ONE_SHOT)
+			if !is_connected("thread_is_free",ConnectionManager):
+				connect("thread_is_free", ConnectionManager.bind(input), CONNECT_ONE_SHOT)
 
 func ThreadBusyCheck() -> bool:
 	if thread.is_alive():

@@ -10,16 +10,17 @@ var anims:AnimationPlayer = AnimationPlayer.new()
 static var lib:AnimationLibrary = preload("res://TRESfiles/Bubbles/Anims/BubbleAnims.tres")
 
 func _init(cont:PackedScene = null):
+	mouse_filter = Control.MOUSE_FILTER_PASS
 	if cont != null:
 		content = cont
 		add_child(cont.instantiate(), false, Node.INTERNAL_MODE_BACK)
-	add_theme_stylebox_override("NewBubble", UniversalBubble)
+	add_theme_stylebox_override("panel", UniversalBubble)
 
 func _ready():
 	focus_mode = Control.FOCUS_ALL
 	grab_focus()
 	focus_mode = Control.FOCUS_NONE
-	Satellite.connect("NewBubble", add_theme_stylebox_override.bind("NewBubble", UniversalBubble))
+	Satellite.connect("NewBubble", add_theme_stylebox_override.bind("panel", UniversalBubble))
 	connect("DeleteRequest", _on_bubble_shell_delete_request)
 
 func _on_bubble_shell_delete_request():

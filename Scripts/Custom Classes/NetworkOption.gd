@@ -3,26 +3,42 @@ extends OptionButton
 # settings) and have it automatically (re)load all the networks options
 class_name NetworkOption
 
-static var settings: GlobalSettingRes
+static var profiles:Array[String]
 @export var IsInOptions: bool = false
 
 static func _static_init():
-	settings = DaBa.SettingsCheck()
+	Satellite.connect("RefreshNetworks", NetworkOption.NetworkIndexLoad)
 
-func _ready():
-	Satellite.connect("RefreshNetworks", NetworkIndexLoad)
-	if not IsInOptions:
-		connect("item_selected", _on_item_selected)
-	NetworkIndexLoad()
-	select(DaBa.ProfileArray.find(settings.DefaultNetwork))
+static var holup:Mutex = Mutex.new()
 
-func NetworkIndexLoad():
-	clear()
+static func NetworkIndexLoad():
+	holup.lock()
+	profiles.clear()
 	var res: ProfileRes
 	for networks in DaBa.ProfileArray:
 		res = DaBa.ProfileCheck(networks)
-		add_item(res.name)
+		profiles.append(res.name)
+	holup.unlock()
+
+var current:int
+
+func _ready():
+	if not IsInOptions:
+		connect("item_selected", _on_item_selected)
+	Satellite.connect("RefreshNetworks", loadprofiles)
+	NetworkIndexLoad()
+	current = DaBa.global_settings.DefaultNetwork
+
+func loadprofiles():
+	holup.lock()
+	clear()
+	for networks in profiles:
+		add_item(networks)
+	if current <= profiles.size():
+		select(current)
+	holup.unlock()
 
 func _on_item_selected(index):
 	DaBa.CurrentProfile = DaBa.ProfileArray[index]
 	Satellite.emit_signal("SwapNetworks", DaBa.ProfileArray[index])
+	current = selected

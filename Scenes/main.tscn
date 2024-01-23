@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d2pkl540o6fx"]
+[gd_scene load_steps=27 format=3 uid="uid://d2pkl540o6fx"]
 
 [ext_resource type="Script" path="res://Scripts/UIControl.gd" id="1_i768k"]
 [ext_resource type="StyleBox" uid="uid://dikpgnjg3srup" path="res://TRESfiles/TopBar/PressedButton.stylebox" id="2_j35xl"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c0bw14xp66y70" path="res://Scenes/Bubbles/PostBubble.tscn" id="12_5mbde"]
 [ext_resource type="Texture2D" uid="uid://bvqqp2bttsp4c" path="res://Assets/Communities.svg" id="13_qep40"]
 [ext_resource type="Script" path="res://Scripts/Custom Classes/CategoryLoad2.gd" id="13_xc7tx"]
+[ext_resource type="Script" path="res://Scripts/Custom Classes/Bubble.gd" id="14_4s7kf"]
 [ext_resource type="Texture2D" uid="uid://udqiowwrmvoq" path="res://Assets/Home.svg" id="14_x8mnm"]
 [ext_resource type="Texture2D" uid="uid://begbmh8hmuiic" path="res://Assets/DMs.svg" id="15_2qmdm"]
 [ext_resource type="Texture2D" uid="uid://bfh6u2i4xorl5" path="res://Assets/Notifications.svg" id="16_y1hec"]
@@ -144,6 +145,10 @@ alignment = 1
 script = ExtResource("13_xc7tx")
 ContentName = &"Home"
 URL = "v1/topics"
+
+[node name="ContentBubble" type="PanelContainer" parent="UIMargin/MainUI/SpacedContent/HomeList"]
+layout_mode = 2
+script = ExtResource("14_4s7kf")
 
 [node name="Settings" parent="UIMargin/MainUI/SpacedContent" instance=ExtResource("8_684ki")]
 visible = false

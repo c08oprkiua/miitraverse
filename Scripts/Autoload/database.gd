@@ -1,7 +1,9 @@
 extends Node
 
 const savepath: String = "user://settings.tres"
-var settings: GlobalSettingRes
+
+var global_settings: GlobalSettingRes
+var current_profile:ProfileRes
 
 #global variable versions of the settings, so that they can be accessed without having
 # a Global Settings class open
@@ -20,12 +22,12 @@ var ProfileArray: Array[int] = []
 
 var CurrentProfile: int
 
-var headersWiiU:WiiUHeaders
-var MiiverseToken: String
-
 func _ready():
 	Satellite.connect("SwapNetworks", SwitchProfiles)
-
+	Satellite.connect("RefreshNetworks", SwitchProfiles)
+	global_settings = SettingsCheck()
+	current_profile = ProfileCheck(global_settings.DefaultNetwork)
+	ActiveNow()
 
 func ProfileArrayFiller():
 	for directories in DirAccess.get_directories_at("user://"):
@@ -48,7 +50,7 @@ func SettingsCheck() -> GlobalSettingRes:
 
 #A given profile (number)'s settings
 func ProfileCheck(number: int) -> ProfileRes:
-	var prof: ProfileRes = ProfileRes.new()
+	var prof: ProfileRes
 	var profpath: String = "user://Profile"+String.num(number)+"/settings.tres"
 	if ResourceLoader.exists(profpath):
 		prof = ResourceLoader.load(profpath) as ProfileRes
@@ -85,20 +87,29 @@ func ContentCheck(number: int, file: String) -> PackedByteArray:
 		print("Well that's concerning")
 		return PackedByteArray([])
 
+#Padding function to call SetFuncVars in instances where an int is not provided
+func ActiveNow():
+	if ProfileArray.has(global_settings.DefaultNetwork):
+		SwitchProfiles(global_settings.DefaultNetwork)
+	else:
+		SwitchProfiles(0)
 
 func SwitchProfiles(now:int):
 	#Check if cache should be enabled
-	var curprofres: ProfileRes = ProfileCheck(now)
-	var mountedcolor:Color
-	if OfflineCache or curprofres.OfflineCache:
+	current_profile = ProfileCheck(now)
+	if global_settings.OfflineCache or current_profile.OfflineCache:
 		UseCache = true
 	else:
 		UseCache = false
 	#Check which UI color should be used. I want to clean this up.
+	ChangeUIColors()
+
+func ChangeUIColors():
+	var mountedcolor:Color
 	if OverrideTints:
 		mountedcolor = Tint
-	elif curprofres.UseUniqueTint:
-		mountedcolor = curprofres.BubbleTint
+	elif current_profile.UseUniqueTint:
+		mountedcolor = current_profile.BubbleTint
 	else:
 		mountedcolor = Tint
 	#Switch Bubbles
@@ -106,6 +117,7 @@ func SwitchProfiles(now:int):
 	bubbletex.bg_color = mountedcolor
 	ContentBubble.UniversalBubble = bubbletex
 	Satellite.emit_signal("NewBubble")
+	#Todo: Now do the painting color overrides
 
 
 #Legacy code
