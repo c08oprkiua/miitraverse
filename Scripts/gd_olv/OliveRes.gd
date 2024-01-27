@@ -1,6 +1,11 @@
 extends Resource
 class_name OliveRes
 
+var version:int
+var request_name:String
+var expire:String
+var has_error:bool
+
 enum Platform_ID {
 	ThreeDS,
 	WiiU

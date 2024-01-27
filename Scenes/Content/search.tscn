@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bki4n3xwbmd5a"]
+
+[node name="Search" type="VBoxContainer"]
+
+[node name="SearchCategory" type="OptionButton" parent="."]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Search" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Search!"

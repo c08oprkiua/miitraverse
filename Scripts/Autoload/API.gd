@@ -33,9 +33,8 @@ func FetchManager(page:StringName, args:Array= []):
 		thread.start(OlvAPI.callv(page, args))
 
 func ConnectionManager(input: int):
-	var ProfRes: ProfileRes = DaBa.ProfileCheck(input)
-	var APIURL: StringName = ProfRes.url
-	OlvAPI.service_token = ProfRes.ServiceToken
+	var APIURL: StringName = DaBa.current_profile.url
+	OlvAPI.service_token = DaBa.current_profile.ServiceToken
 	#Cause if its a match, why reconnect to the same URL?
 	if CurrentAPIHost != APIURL:
 		CurrentAPIHost = APIURL

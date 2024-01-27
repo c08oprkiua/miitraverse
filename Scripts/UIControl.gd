@@ -43,7 +43,12 @@ func _on_settings_toggled(button_pressed):
 	Satellite.emit_signal("SwitchTabs", "Settings", button_pressed)
 
 func _on_search_toggled(button_pressed):
+	if button_pressed:
+		var cont:PackedScene = load("res://Scenes/Content/search.tscn")
+		var bub:ContentBubble = ContentBubble.new(cont)
+		add_child(bub)
 	print("Search: ", button_pressed)
 
 func _on_activity_feed_toggled(button_pressed):
 	Satellite.emit_signal("SwitchTabs", "People", button_pressed)
+

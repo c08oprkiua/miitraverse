@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://fux5aw3v5tqe"]
-
-[ext_resource type="PackedScene" uid="uid://dlwwdti01bj1d" path="res://Scenes/Bubbles/bubbleshell.tscn" id="1_hkj1o"]
-[ext_resource type="PackedScene" uid="uid://bqu25xw7yiqxk" path="res://Scenes/Content/profile_settings.tscn" id="2_60mh6"]
-
-[node name="BubbleShell" instance=ExtResource("1_hkj1o")]
-Content = ExtResource("2_60mh6")

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dg5no4nvd3k3n"]
+
+[node name="Welcome" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 2
+text = "Welcome to MiiTraverse!"
+horizontal_alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "A lot does not work yet, make sure to report any issues on Github after checking the issues section for your issue!"
+fit_content = true

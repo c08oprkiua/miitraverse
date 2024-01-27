@@ -6,7 +6,7 @@ class_name PostRes
 #among other sources
 
 @export_group("IDs")
-@export var id: String #This is permanent; it cannot be overwirrten by other posts
+@export var id: String #This is permanent; it cannot be overwirrten by other posts(?)
 @export var title_id: String
 @export var pid: int
 @export var platform_id: Platform_ID
@@ -26,7 +26,7 @@ class_name PostRes
 @export var yeahs: int
 @export var reply_count: int
 @export var is_autopost: int
-@export var is_community_private_autopost: int #bool?
+@export var is_community_private_autopost: bool
 
 @export_group("Meta Data")
 @export var is_app_jumpable: bool
@@ -59,7 +59,7 @@ class_name PostRes
 @export var mii_face_url: String
 
 @export_group("Moderation Stats")
-#These are special stats only made visible to non-admins with the API. USE WITH CARE
+#Prolly not returned by the Miiverse API
 @export var removed: bool
 @export var removed_reason: String
 @export var removed_by: int

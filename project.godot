@@ -54,10 +54,10 @@ DaBa="*res://Scripts/Autoload/database.gd"
 
 [display]
 
-window/size/viewport_width=540
-window/size/viewport_height=1200
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/stretch/scale=2.0
 window/handheld/orientation=1
 window/vsync/vsync_mode=0
 

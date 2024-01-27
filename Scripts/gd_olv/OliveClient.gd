@@ -3,6 +3,7 @@ class_name OliveClient
 
 var domain:String
 
+var parse:MiiverseParser
 var pack:ParamPackRes = ParamPackRes.new()
 var service_token:String
 
@@ -105,12 +106,13 @@ func get_communities() -> Array[CommRes]:
 	return communities
 
 func get_community(community_id:String) -> CommRes:
-	internal_request(METHOD_GET,"v1/communities/"+community_id+"/posts")
-	return CommRes.new()
+	parse = MiiverseParser.new(internal_request(METHOD_GET,"v1/communities/"+community_id+"/posts"))
+	var community: CommRes = parse.parse_for_community()
+	return community
 
 func get_community_from_titleid(title_id:String):
 	pack.title_id = title_id
-	internal_request(METHOD_GET,"v1/communities/0/posts")
+	parse = MiiverseParser.new(internal_request(METHOD_GET,"v1/communities/0/posts"))
 
 func get_post_from_community(post_id:String):
 	pass
@@ -119,10 +121,10 @@ func get_post_from_community_tid(titleid:String, postid:String):
 	pass
 
 func get_friend_messages():
-	var response:PackedByteArray = internal_request(METHOD_GET,"/v1/friend_messages")
+	parse = MiiverseParser.new(internal_request(METHOD_GET,"/v1/friend_messages"))
 
 func get_topics():
-	var response:PackedByteArray = internal_request(METHOD_GET,"/v1/topics")
+	parse = MiiverseParser.new(internal_request(METHOD_GET,"/v1/topics"))
 
 func post_to_community(community_id: String, post:PostRes):
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d2pkl540o6fx"]
+[gd_scene load_steps=28 format=3 uid="uid://d2pkl540o6fx"]
 
 [ext_resource type="Script" path="res://Scripts/UIControl.gd" id="1_i768k"]
 [ext_resource type="StyleBox" uid="uid://dikpgnjg3srup" path="res://TRESfiles/TopBar/PressedButton.stylebox" id="2_j35xl"]
@@ -12,14 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://pwuwhr3cx3im" path="res://Scenes/spacer.tscn" id="9_fpy3m"]
 [ext_resource type="Script" path="res://Scripts/Content Categotries/CatCommunity.gd" id="10_jrodb"]
 [ext_resource type="Theme" uid="uid://dsjlclnaxpbfc" path="res://TRESfiles/BottomBar/bottombartheme.theme" id="11_pkn6c"]
-[ext_resource type="Script" path="res://Scripts/Custom Classes/CategoryLoad.gd" id="11_xabrv"]
-[ext_resource type="PackedScene" uid="uid://c0bw14xp66y70" path="res://Scenes/Bubbles/PostBubble.tscn" id="12_5mbde"]
+[ext_resource type="Script" path="res://Scripts/Custom Classes/CategoryFlow.gd" id="11_xabrv"]
 [ext_resource type="Texture2D" uid="uid://bvqqp2bttsp4c" path="res://Assets/Communities.svg" id="13_qep40"]
-[ext_resource type="Script" path="res://Scripts/Custom Classes/CategoryLoad2.gd" id="13_xc7tx"]
+[ext_resource type="Script" path="res://Scripts/Custom Classes/CategoryBox.gd" id="13_xc7tx"]
 [ext_resource type="Script" path="res://Scripts/Custom Classes/Bubble.gd" id="14_4s7kf"]
 [ext_resource type="Texture2D" uid="uid://udqiowwrmvoq" path="res://Assets/Home.svg" id="14_x8mnm"]
 [ext_resource type="Texture2D" uid="uid://begbmh8hmuiic" path="res://Assets/DMs.svg" id="15_2qmdm"]
+[ext_resource type="PackedScene" uid="uid://dg5no4nvd3k3n" path="res://Scenes/Content/welcome.tscn" id="15_umaxj"]
 [ext_resource type="Texture2D" uid="uid://bfh6u2i4xorl5" path="res://Assets/Notifications.svg" id="16_y1hec"]
+[ext_resource type="Texture2D" uid="uid://dab7bbc6lt7s2" path="res://Assets/juxt_comm.svg" id="19_g21nj"]
 [ext_resource type="Texture2D" uid="uid://ciilsbv5mr1xv" path="res://Assets/plainupnp.svg" id="19_jq22y"]
 [ext_resource type="Texture2D" uid="uid://dxbw7ypmk50en" path="res://Assets/newbg2.svg" id="21_i7tj5"]
 
@@ -123,7 +124,6 @@ size_flags_vertical = 3
 alignment = 1
 script = ExtResource("10_jrodb")
 ContentName = &"Communities"
-URL = "v1/communities"
 
 [node name="Posts" type="FlowContainer" parent="UIMargin/MainUI/SpacedContent"]
 visible = false
@@ -132,8 +132,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("11_xabrv")
 ContentName = &"Posts"
-Bubble = ExtResource("12_5mbde")
-URL = "/v1/communities/{id1}/posts"
 TriggerNode = "\"post\""
 
 [node name="HomeList" type="BoxContainer" parent="UIMargin/MainUI/SpacedContent"]
@@ -144,11 +142,11 @@ size_flags_vertical = 3
 alignment = 1
 script = ExtResource("13_xc7tx")
 ContentName = &"Home"
-URL = "v1/topics"
 
 [node name="ContentBubble" type="PanelContainer" parent="UIMargin/MainUI/SpacedContent/HomeList"]
 layout_mode = 2
 script = ExtResource("14_4s7kf")
+content = ExtResource("15_umaxj")
 
 [node name="Settings" parent="UIMargin/MainUI/SpacedContent" instance=ExtResource("8_684ki")]
 visible = false
@@ -167,7 +165,7 @@ ContentName = &"Notifications"
 visible = false
 layout_mode = 2
 script = ExtResource("13_xc7tx")
-ContentName = &"Messages"
+ContentName = &"DMs"
 
 [node name="Spacer2" parent="UIMargin/MainUI/SpacedContent" instance=ExtResource("9_fpy3m")]
 layout_mode = 2
@@ -207,7 +205,9 @@ icon_alignment = 1
 [node name="Posts" type="Button" parent="ButtonBar"]
 visible = false
 layout_mode = 2
-text = "Posts"
+size_flags_horizontal = 3
+toggle_mode = true
+icon = ExtResource("19_g21nj")
 icon_alignment = 1
 
 [node name="Home" type="Button" parent="ButtonBar"]
@@ -237,7 +237,7 @@ button_group = ExtResource("3_qw7k8")
 icon = ExtResource("16_y1hec")
 icon_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
